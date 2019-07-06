@@ -218,12 +218,12 @@
   }
 }
 
-.separator {
-  border: none;
-  height: 15px;
-  width: 100%;
-  background: url('/assets/img/wave.svg') center center repeat-x;
-}
+// .separator {
+//   border: none;
+//   height: 15px;
+//   width: 100%;
+//   background: url('~src/assets/img/wave.svg') center center repeat-x;
+// }
 
 .btn-submit-outline {
   @extend %btn-page;
