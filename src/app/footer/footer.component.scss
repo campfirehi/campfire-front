@@ -1,0 +1,78 @@
+// @import 'custom';
+@import 'bootstrap/bootstrap';
+@import 'mixins';
+@import 'placeholders';
+@import 'spacing';
+
+.footer {
+    @include container-fluid-base;
+    @extend %py-5;
+  }
+  
+  .footer-content {
+    @extend %row;
+  }
+  
+  .footer-brand {
+    @extend %col-12;
+    @extend %col-lg-3;
+    @extend %d-flex;
+    @extend %flex-column;
+    @extend %align-items-center;
+    @extend %align-items-lg-start;
+    @extend %mb-5;
+    @extend %mb-lg-0;
+  }
+  
+  .footer-nav {
+    @extend %col-12;
+    @extend %col-lg-9;
+  }
+  
+  .footer-brandmark {
+    @include brandmark($width: $footer-brand-width, $height: $footer-brand-height,
+    $width-sm-down: $footer-brand-width-sm-down, $height-sm-down: $footer-brand-height-sm-down,
+    $filename: 'logo');
+  }
+  
+  .footer-link-groups {
+    @extend %row;
+    @extend %text-center;
+    @extend %text-lg-left;
+  }
+  
+  .footer-link-group {
+    @extend %col-12;
+    @extend %col-sm-3;
+    @extend %d-sm-flex;
+    @extend %justify-content-sm-end;
+  
+    &:not(:last-of-type) {
+      @extend %mb-5;
+      @extend %mb-sm-0;
+    }
+  }
+  
+  .footer-links {
+    h4 {
+      @extend %mb-3;
+      font-size: $font-size-medium;
+    }
+  
+    ul {
+      @extend %list-unstyled;
+      @extend %mb-0;
+      font-size: $font-size-small;
+  
+      li {
+        &:not(:last-of-type) {
+          @extend %mb-2;
+        }
+  
+        a {
+          @include link-decoration($footer-link-color, $footer-link-hover-color,
+            $footer-link-border, $footer-link-border-hover);
+        }
+      }
+    }
+  }

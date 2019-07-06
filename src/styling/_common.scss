@@ -1,0 +1,231 @@
+%page-header-base {
+  @include container-fluid-base;
+  @extend %text-center;
+}
+
+.page-header-1 {
+  @extend %page-header-base;
+  @extend %my-7;
+  @extend %my-md-8;
+}
+
+.page-header-2 {
+  @extend %page-header-base;
+  @include mt-7;
+  @include mb-6;
+}
+
+.page-header-3 {
+  @extend %page-header-base;
+  @extend %mt-7;
+  @extend %mt-md-8;
+  @extend %mb-5;
+}
+
+.page-header-title-1,
+.page-header-title-2,
+.page-header-content-1,
+.page-header-content-2,
+.page-header-content-3 {
+  @extend %col-sm-11;
+  @extend %col-md-10;
+  @extend %mx-auto;
+}
+
+.page-header-title-1,
+.page-header-content-1 {
+  @extend %col-lg-7;
+}
+
+.page-header-title-2,
+.page-header-content-2,
+.page-header-content-3 {
+  @extend %col-lg-9;
+}
+
+%page-header-content-base {
+  @extend %text-left;
+
+  p {
+    @extend %mb-0;
+    line-height: 1.75;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-x-large;
+  }
+}
+
+.page-header-content-1 {
+  @extend %page-header-content-base;
+  @extend %mt-2;
+  @extend %text-center;
+}
+
+.page-header-content-2 {
+  @extend %page-header-content-base;
+  @extend %mt-5;
+}
+
+.page-header-content-3 {
+  @extend %page-header-content-base;
+  @extend %mt-5;
+
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-large;
+  }
+}
+
+%page-main-base {
+  @extend %text-center;
+}
+
+%page-block-header-base {
+  @include container-fluid-base;
+}
+
+.page-block-header-1 {
+  @extend %page-block-header-base;
+  @extend %mb-4;
+}
+
+.page-block-header-2 {
+  @extend %page-block-header-base;
+  @extend %mb-4;
+  @extend %mb-md-5;
+}
+
+.page-block-header-3 {
+  @extend %page-block-header-base;
+  @extend %mb-5;
+  @extend %mb-md-6;
+}
+
+.page-block {
+  &:not(:last-child) {
+    @extend %mb-5;
+    @extend %mb-md-6;
+  }
+
+  &.separated {
+    @extend %mt-5;
+    @extend %mt-md-6;
+  }
+
+  &.extra-space {
+    @extend %mb-7;
+    @extend %mb-md-8;
+  }
+}
+
+.image-block {
+  @extend %wide-column;
+  @extend %mb-5;
+  @extend %mb-md-6;
+  @extend %hidden-xs-down;
+
+  img {
+    @extend %img-fluid;
+    width: 100%;
+  }
+}
+
+%text,
+.text {
+  a {
+    @include link-decoration($text-link-color, $text-link-hover-color,
+      $text-link-border, $text-link-border-hover);
+  }
+}
+
+%btn-page {
+  @extend %btn-base;
+  @extend %btn-secondary;
+  @extend %btn-outline-secondary;
+  @extend %btn-lg;
+  font-family: $font-family-sans-serif;
+  cursor: pointer;
+}
+
+%text-heavy-col-base {
+  @extend %col;
+  @extend %col-sm-10;
+  @extend %col-md-9;
+  @extend %col-lg-8;
+  @extend %mx-auto;
+  max-width: 940px;
+}
+
+%narrative-base {
+  @extend %text;
+  @extend %left-justified-list;
+
+  h2 {
+    @extend %mb-3;
+    color: $black;
+    font-size: $font-size-xx-large;
+
+    &:not(:first-child) {
+      @extend %mt-5;
+    }
+  }
+
+  h3 {
+    @extend %mb-2;
+    color: $brand-primary;
+    font-size: $font-size-large;
+
+    &:not(:first-child) {
+      @extend %mt-5;
+    }
+  }
+
+  p:last-child {
+    @extend %mb-0;
+  }
+
+  img {
+    @extend %img-fluid;
+    @extend %mt-3;
+    @extend %mb-4;
+    width: 100%;
+  }
+}
+
+%narrative-col {
+  @extend %text-heavy-col-base;
+  @extend %narrative-base;
+
+  h2,
+  p,
+  ul {
+    @extend %text-left;
+  }
+}
+
+%text-lead-col-base {
+  @extend %text-heavy-col-base;
+  @extend %text-left;
+}
+
+%text-lead-col,
+.text-lead-col {
+  @extend %text-lead-col-base;
+  @extend %mb-5;
+
+  p {
+    @extend %mb-0;
+  }
+}
+
+.separator {
+  border: none;
+  height: 15px;
+  width: 100%;
+  background: url('/assets/img/wave.svg') center center repeat-x;
+}
+
+.btn-submit-outline {
+  @extend %btn-page;
+  min-width: 200px;
+}

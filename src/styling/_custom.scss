@@ -1,0 +1,302 @@
+//
+//
+// Skylight font faces, brand colors, and font sizes
+//
+//
+
+// Font faces
+@font-face {
+  font-family: 'Geomanist';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/geomanist-regular-webfont.eot');
+  src: url('/assets/fonts/geomanist-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/geomanist-regular-webfont.woff2') format('woff2'),
+       url('/assets/fonts/geomanist-regular-webfont.woff') format('woff'),
+       url('/assets/fonts/geomanist-regular-webfont.ttf') format('truetype'),
+       url('/assets/fonts/geomanist-regular-webfont.svg#geomanist_regularregular') format('svg');
+}
+
+@font-face {
+  font-family: 'Geomanist';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/assets/fonts/geomanist-medium-webfont.eot');
+  src: url('/assets/fonts/geomanist-medium-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/geomanist-medium-webfont.woff2') format('woff2'),
+       url('/assets/fonts/geomanist-medium-webfont.woff') format('woff'),
+       url('/assets/fonts/geomanist-medium-webfont.ttf') format('truetype'),
+       url('/assets/fonts/geomanist-medium-webfont.svg#geomanistmedium') format('svg');
+}
+
+@font-face {
+  font-family: 'Geomanist';
+  font-style: normal;
+  font-weight: 100;
+  src: url('/assets/fonts/geomanist-light-webfont.eot');
+  src: url('/assets/fonts/geomanist-light-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/geomanist-light-webfont.woff2') format('woff2'),
+       url('/assets/fonts/geomanist-light-webfont.woff') format('woff'),
+       url('/assets/fonts/geomanist-light-webfont.ttf') format('truetype'),
+       url('/assets/fonts/geomanist-light-webfont.svg#geomanistlight') format('svg');
+}
+
+@font-face {
+  font-family: 'Geomanist';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/assets/fonts/geomanist-regular-italic-webfont.eot');
+  src: url('/assets/fonts/geomanist-regular-italic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/geomanist-regular-italic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/geomanist-regular-italic-webfont.woff') format('woff'),
+       url('/assets/fonts/geomanist-regular-italic-webfont.ttf') format('truetype'),
+       url('/assets/fonts/geomanist-regular-italic-webfont.svg#geomanistregular_italic') format('svg');
+}
+
+@font-face {
+  font-family: 'Geomanist';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/assets/fonts/geomanist-medium-italic-webfont.eot');
+  src: url('/assets/fonts/geomanist-medium-italic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/geomanist-medium-italic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/geomanist-medium-italic-webfont.woff') format('woff'),
+       url('/assets/fonts/geomanist-medium-italic-webfont.ttf') format('truetype'),
+       url('/assets/fonts/geomanist-medium-italic-webfont.svg#geomanistmedium_italic') format('svg');
+}
+
+@font-face {
+  font-family: 'Geomanist';
+  font-style: italic;
+  font-weight: 100;
+  src: url('/assets/fonts/geomanist-light-italic-webfont.eot');
+  src: url('/assets/fonts/geomanist-light-italic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/geomanist-light-italic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/geomanist-light-italic-webfont.woff') format('woff'),
+       url('/assets/fonts/geomanist-light-italic-webfont.ttf') format('truetype'),
+       url('/assets/fonts/geomanist-light-italic-webfont.svg#geomanistlight_italic') format('svg');
+}
+
+// Brand colors
+$sk-red: darken(#df635c, 0%);
+$sk-blue: darken(#468fba, 0%);
+$sk-green: darken(#5fa373, 0%);
+$sk-yellow: darken(#f4c55c, 0%);
+$sk-grey: #54565a;
+
+// Font sizes
+$font-size-xxxxx-large: 3rem;
+$font-size-xxxx-large: 2.5rem;
+$font-size-xxx-large: 2rem;
+$font-size-xx-large: 1.75rem;
+$font-size-x-large: 1.5rem;
+$font-size-large: 1.25rem;
+$font-size-medium: 1.125rem;
+$font-size-small: 1rem;
+$font-size-x-small: .95rem;
+$font-size-xx-small: .9rem;
+$font-size-xxx-small: .85rem;
+$font-size-xxxx-small: .8rem;
+
+// Bootstrap overrides
+//
+// Copy variables from `_variables.scss` to this file to override default values
+// without modifying source files.
+//
+
+// Colors
+$white: #fff;
+$black: #0e0e0e;
+
+$gray: $sk-grey;
+$gray-dark: darken($gray, 10%);
+$gray-light: lighten($gray, 10%);
+$gray-lighter: lighten($gray, 30%);
+$gray-lightest: lighten($gray, 50%);
+
+$brand-primary: $sk-blue;
+$brand-success: $sk-green;
+$brand-info: $sk-blue;
+$brand-warning: $sk-yellow;
+$brand-danger: $sk-red;
+$brand-inverse: $gray-dark;
+
+// Body
+$body-color: $gray-dark;
+
+// Links
+$link-color: $brand-primary;
+$link-hover-color: darken($link-color, 15%) !default;
+$link-hover-decoration: none;
+
+// Fonts
+$font-family-sans-serif: 'Geomanist', sans-serif;
+
+$font-size-base: $font-size-medium;
+$font-size-lg: $font-size-large;
+$font-size-sm: $font-size-xx-small;
+$font-size-xs: $font-size-xxx-small;
+
+$line-height-base: 1.7;
+
+$font-size-h1: 4rem;
+$font-size-h2: 3rem;
+$font-size-h3: 1.75rem;
+$font-size-h4: 1.5rem;
+$font-size-h5: 1.25rem;
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$headings-margin-bottom: 0;
+$headings-font-weight: 700;
+
+$lead-font-weight: 100;
+
+$text-muted: $gray-light;
+
+$list-inline-padding: 0;
+
+// Navbar
+$navbar-padding-x: 0;
+
+// Forms
+$form-group-margin-bottom: 2rem;
+$form-check-margin-bottom: $form-group-margin-bottom;
+
+$input-color-placeholder: $gray-lighter;
+
+// Buttons
+$btn-primary-color: $white;
+$btn-primary-bg: $brand-primary;
+$btn-primary-border: $brand-primary;
+
+$btn-secondary-color: $brand-primary;
+$btn-secondary-bg: $white;
+$btn-secondary-border: $brand-primary;
+
+// Jumbotron
+$jumbotron-bg: $brand-primary;
+
+// Cards
+$card-border-color: $gray-lightest;
+$card-cap-bg: $white;
+
+// Tooltips
+$tooltip-bg: $brand-primary;
+
+//
+//
+// Skylight variables
+//
+//
+
+// Colors
+$brand-primary-muted: rgba($brand-primary, .7);
+
+// Links
+$text-link-color: $brand-primary;
+$text-link-hover-color: $text-link-color;
+$text-link-border: 1px dotted $text-link-color;
+$text-link-border-hover: 1px solid $text-link-hover-color;
+
+$header-display-1: $font-size-h1;
+$header-display-2: $font-size-h2;
+$header-display-3: $font-size-h3;
+$header-display-4: $font-size-h4;
+$header-display-5: $font-size-h5;
+
+// Notice bar
+$notice-bar-link-color: $white;
+$notice-bar-link-hover-color: lighten($brand-primary, 40%);
+$notice-bar-link-border: none;
+$notice-bar-link-border-hover: none;
+$notice-bar-bg-color: linear-gradient(90deg, $brand-primary, darken($brand-primary, 15%));
+
+// Main nav
+$nav-brand-width-sm-down: 150px;
+$nav-brand-height-sm-down: 40px;
+$nav-brand-width: 200px;
+$nav-brand-height: 50px;
+
+$nav-link-color: $body-color;
+$nav-link-decoration: none;
+$nav-link-hover-color: $nav-link-color;
+$nav-link-hover-decoration: none;
+$nav-link-border-color: $brand-primary;
+
+$nav-toggler-color: $nav-link-color;
+$nav-toggler-hover-color: $brand-primary;
+
+// Jumbotron
+$jumbotron-color: $white;
+
+// Forms
+$control-label-color: $body-color;
+$control-label-font-size: $font-size-base;
+
+$help-text-link-color: $text-muted;
+$help-text-link-hover-color: $brand-primary;
+$help-text-link-border: 1px dotted $help-text-link-color;
+$help-text-link-border-hover: 1px solid $help-text-link-hover-color;
+
+$form-icons-margin-bottom: $form-group-margin-bottom;
+
+$form-icons-border-color: $gray-lightest;
+
+$form-icon-color: $form-icons-border-color;
+$form-icon-hover-color: $brand-primary;
+
+$btn-form-color: $body-color;
+$btn-form-bg: $white;
+$btn-form-border: $btn-form-color;
+$btn-form-active-color: $brand-primary;
+
+// Cards
+$card-box-shadow: 0 1px 9px rgba(0, 0, 0, .3);
+
+// Modals
+$modal-header-color: $brand-primary;
+
+// Footer
+$footer-brand-width-sm-down: 158px;
+$footer-brand-height-sm-down: 50px;
+$footer-brand-width: 190px;
+$footer-brand-height: 60px;
+
+$footer-link-color: $gray-light;
+$footer-link-hover-color: $brand-primary;
+$footer-link-border: none;
+$footer-link-border-hover: 1px solid $footer-link-hover-color;
+
+// Page CTA (subfooter)
+$page-cta-color: $white;
+$page-cta-bg-color: linear-gradient(90deg, $brand-primary, darken($brand-primary, 15%));
+
+$btn-page-cta-color: $white;
+$btn-page-cta-bg: $brand-primary;
+
+// Project case studies
+$project-aside-link-color: $body-color;
+$project-aside-link-hover-color: $brand-primary;
+$project-aside-link-border: 1px dotted $project-aside-link-color;
+$project-aside-link-border-hover: 1px solid $project-aside-link-hover-color;
+
+// Filters
+$filter-item-link-color: $body-color;
+$filter-item-link-hover-color: $brand-primary;
+$filter-item-link-border: none;
+$filter-item-link-border-hover: none;
+
+// Posts
+$post-header-footer-color: $gray-light;
+
+$post-header-footer-link-color: $post-header-footer-color;
+$post-header-footer-link-hover-color: $brand-primary;
+$post-header-footer-link-border: 1px dotted $post-header-footer-link-color;
+$post-header-footer-link-border-hover: 1px solid $post-header-footer-link-hover-color;
+
+$btn-share-color: $post-header-footer-color;
+$btn-share-bg: $white;
+$btn-share-border: $btn-share-color;
+$btn-share-active-color: $brand-primary;

@@ -1,0 +1,289 @@
+// Vendor prefixes (@author Hugo Giraudel)
+@mixin prefix($declarations, $prefixes: ()) {
+  @each $property, $value in $declarations {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    #{$property}: $value;
+  }
+}
+
+// Brand
+@mixin brandmark($width: $nav-brand-width, $height: $nav-brand-height,
+  $width-sm-down: $nav-brand-width-sm-down, $height-sm-down: $nav-brand-height-sm-down,
+  $filename: 'logo') {
+  @extend %d-block;
+  background: url('/assets/img/#{$filename}.png') no-repeat;
+  background: url('/assets/img/#{$filename}.svg') no-repeat;
+  height: $height;
+  width: $width;
+  background-size: contain;
+  text-indent: -9999px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 0.15s all ease;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: $height-sm-down;
+    width: $width-sm-down;
+  }
+}
+
+// Spacing
+@mixin mt-6 { margin-top: 4rem !important; }
+@mixin mt-7 { margin-top: 5rem !important; }
+@mixin mt-8 { margin-top: 6rem !important; }
+@mixin mb-0 { margin-bottom: 0 !important; }
+@mixin mb-3 { margin-bottom: 1rem !important; }
+@mixin mb-4 { margin-bottom: 1.5rem !important; }
+@mixin mb-5 { margin-bottom: 3rem !important; }
+@mixin mb-6 { margin-bottom: 4rem !important; }
+@mixin mb-7 { margin-bottom: 5rem !important; }
+@mixin mb-8 { margin-bottom: 6rem !important; }
+@mixin mb-9 { margin-bottom: 9rem !important; }
+@mixin mb-10 { margin-bottom: 8rem !important; }
+@mixin ml-3 { margin-left: 1rem !important; }
+
+@mixin pt-5 { padding-top: 3rem !important; }
+@mixin pt-6 { padding-top: 4rem !important; }
+@mixin pb-6 { padding-bottom: 4rem !important; }
+@mixin pl-2 { padding-left: .5rem !important; }
+@mixin pl-5 { padding-left: 3rem !important; }
+@mixin pl-6 { padding-left: 4rem !important; }
+@mixin pr-2 { padding-right: .5rem !important; }
+@mixin pr-5 { padding-right: 3rem !important; }
+@mixin pr-6 { padding-right: 4rem !important; }
+
+// Links
+%nav-link-decoration {
+  color: $nav-link-color;
+  text-decoration: $nav-link-decoration;
+
+  &:hover,
+  &:focus {
+    color: $nav-link-hover-color;
+    text-decoration: $nav-link-hover-decoration;
+  }
+}
+
+@mixin link-inactive-decoration($color, $border) {
+  color: $color;
+  border-bottom: $border;
+}
+
+@mixin link-active-decoration($hover-color, $border-hover) {
+  &:hover,
+  &:focus {
+    border-bottom: $border-hover;
+    color: $hover-color;
+  }
+}
+
+@mixin link-decoration($color, $hover-color, $border, $border-hover) {
+  @include link-inactive-decoration($color, $border);
+  @include link-active-decoration($hover-color, $border-hover);
+}
+
+// Buttons
+
+// Modified copy of Bootstrap's button variant mixin
+@mixin button-outline-variant-2($color, $background, $border, $active-color) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+  @include box-shadow($btn-box-shadow);
+
+  @include hover {
+    background-color: $active-color;
+    border-color: $active-color;
+    color: $background;
+  }
+
+  &:focus {
+    @if $enable-shadows {
+      box-shadow: $btn-box-shadow, 0 0 0 2px rgba($active-color, .5);
+    } @else {
+      box-shadow: 0 0 0 2px rgba($active-color, .5);
+    }
+  }
+
+  &:active {
+    background-color: $active-color;
+    border-color: $active-color;
+    color: $background;
+  }
+}
+
+// Grid
+@mixin multi-col-spacing($class-name, $mb-size, $mb-md-size) {
+  .#{$class-name} {
+    @extend %mb-#{$mb-size};
+
+    &:last-child {
+      @extend %mb-0;
+    }
+
+    @extend %mb-md-#{$mb-md-size};
+  }
+
+  .hanging-col-size-0 > .#{$class-name} {
+    @extend %mb-md-0;
+  }
+
+  .hanging-col-size-1 > .#{$class-name} {
+    &:nth-last-of-type(1) {
+      @extend %mb-md-0;
+    }
+  }
+
+  .hanging-col-size-2 > .#{$class-name} {
+    &:nth-last-of-type(1),
+    &:nth-last-of-type(2) {
+      @extend %mb-md-0;
+    }
+  }
+
+  .hanging-col-size-3 > .#{$class-name} {
+    &:nth-last-of-type(1),
+    &:nth-last-of-type(2),
+    &:nth-last-of-type(3) {
+      @extend %mb-md-0;
+    }
+  }
+}
+
+// Cards
+@mixin semantic-card($class-name, $clickable: true, $title-alignment: left,
+  $title-color: $brand-primary, $subtitle-color: $brand-primary-muted,
+  $footer-border-off: true, $footer-font-size: $font-size-small,
+  $card-img-height: 225px) {
+
+  $title-font-size: $font-size-x-large;
+
+  $subtitle-font-size: $font-size-small;
+  $subtitle-alignment: $title-alignment;
+
+  $text-color: $body-color;
+  $text-font-size: $font-size-small;
+  $text-alignment: left;
+
+  $footer-alignment: $title-alignment;
+
+  $tag-color: $gray-light;
+  $tag-font-size: $font-size-xx-small;
+  $tag-alignment: $title-alignment;
+
+  .#{$class-name}-col {
+    @extend %col-12;
+    @extend %col-md-4;
+  }
+
+  .#{$class-name}-card {
+    @extend %card;
+    height: 100%;
+
+    @if $clickable {
+      box-shadow: $card-box-shadow;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .#{$class-name}-img {
+    @extend %card-img-top;
+    @extend %m-0;
+    @extend %p-0;
+    background-color: $gray-lighter;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: $card-img-height;
+    width: 100%;
+  }
+
+  .#{$class-name}-block {
+    @extend %card-block;
+  }
+
+  .#{$class-name}-title-tag {
+    @extend %mb-3;
+    @extend %text-uppercase;
+    @extend %font-weight-bold;
+    color: $tag-color;
+    font-size: $tag-font-size;
+    letter-spacing: 0.5px;
+    line-height: 1.25;
+    text-align: $tag-alignment;
+  }
+
+  .#{$class-name}-title {
+    @extend %card-title;
+    @extend %mb-0;
+    color: $title-color;
+    font-size: $title-font-size;
+    text-align: $title-alignment;
+  }
+
+  .#{$class-name}-subtitle {
+    @extend %card-subtitle;
+    @extend %mt-2;
+    color: $subtitle-color;
+    font-size: $subtitle-font-size;
+    text-align: $subtitle-alignment;
+  }
+
+  .#{$class-name}-text {
+    @extend %card-text;
+    @extend %mt-4;
+    color: $text-color;
+    font-size: $text-font-size;
+    text-align: $text-alignment;
+  }
+
+  .#{$class-name}-footer {
+    @extend %card-footer;
+    font-size: $footer-font-size;
+    text-align: $footer-alignment;
+
+    @if $footer-border-off {
+      @extend %no-border;
+    } @else {
+      @extend %mx-0;
+    }
+
+    span + i {
+      @extend %ml-2;
+      @extend %align-middle;
+    }
+  }
+
+}
+
+// Misc
+@mixin container-fluid-base {
+  @extend %container-fluid;
+  @extend %px-md-5;
+}
+
+%wide-column {
+  @extend %col-sm-11;
+  @extend %col-md-10;
+  @extend %mx-auto;
+}
+
+%readability-column {
+  @extend %col-sm-11;
+  @extend %col-md-10;
+  @extend %col-lg-6;
+  @extend %mx-auto;
+}

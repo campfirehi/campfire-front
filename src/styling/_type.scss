@@ -1,0 +1,154 @@
+.header-display-1 {
+  font-size: $header-display-1;
+}
+
+.header-page {
+  color: $black;
+}
+
+.header-display-2 {
+  font-size: $header-display-2;
+}
+
+.header-display-4 {
+  font-size: $header-display-4;
+}
+
+.header-display-5 {
+  font-size: $header-display-5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend %font-weight-bold;
+}
+
+h1 {
+  color: $black;
+}
+
+@include media-breakpoint-between(xs, sm) {
+  h1 {
+    font-size: $font-size-h1 * .60;
+  }
+
+  h2 {
+    font-size: $font-size-h2 * .65;
+  }
+
+  h3 {
+    font-size: $font-size-h3 * .75;
+  }
+
+  .header-display-1 {
+    font-size: $header-display-1 * .60;
+  }
+
+  .header-display-2 {
+    font-size: $header-display-2 * .60;
+  }
+
+  .header-display-4 {
+    font-size: $header-display-4 * .75;
+  }
+
+  .header-display-5 {
+    font-size: $header-display-5 * .80;
+  }
+}
+
+@include media-breakpoint-between(sm, md) {
+  h1 {
+    font-size: $font-size-h1 * .80;
+  }
+
+  h2 {
+    font-size: $font-size-h2 * .85;
+  }
+
+  h3 {
+    font-size: $font-size-h3 * .95;
+  }
+
+  .header-display-1 {
+    font-size: $header-display-1 * .80;
+  }
+
+  .header-display-2 {
+    font-size: $header-display-2 * .80;
+  }
+
+  .header-display-4 {
+    font-size: $header-display-4 * .85;
+  }
+
+  .header-display-5 {
+    font-size: $header-display-5 * .90;
+  }
+}
+
+%list-base {
+  ol,
+  ul {
+    li:not(:last-child) {
+      @extend %pb-3;
+    }
+  }
+}
+
+%left-justified-list {
+  @extend %list-base;
+
+  ol,
+  ul {
+    @extend %list-unstyled;
+  }
+
+  ol,
+  ul {
+    li::before {
+      color: $gray-lighter;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  ul {
+    li::before {
+      @extend %rounded-circle;
+      content: '\2022';
+      position: absolute;
+    }
+  }
+
+  ol {
+    counter-reset: item;
+
+    li::before {
+      content: counter(item) '. ';
+      counter-increment: item;
+    }
+  }
+
+  li {
+    padding-left: 1.5rem;
+    position: relative;
+  }
+}
+
+%list-item-unstyled {
+  li::before {
+    border-radius: 0;
+    content: none;
+  }
+
+  li {
+    @extend %ml-0;
+    @extend %pl-0;
+  }
+}
