@@ -4,14 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { LandingComponent } from './landing/landing.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomepageComponent },
+  { path: '', component: LandingComponent },
  { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -19,7 +19,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent,
+    LandingComponent,
     FooterComponent,
     NavbarComponent,
     PageNotFoundComponent
