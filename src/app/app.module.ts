@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
+import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
     LandingComponent,
     FooterComponent,
     NavbarComponent,
+    LoginComponent,
     PageNotFoundComponent
   ],
   imports: [
