@@ -14,8 +14,8 @@
   $width-sm-down: $nav-brand-width-sm-down, $height-sm-down: $nav-brand-height-sm-down,
   $filename: 'logo') {
   @extend %d-block;
-  background: url('~src/assets/img/#{$filename}.png') no-repeat;
-  background: url('~src/assets/img/#{$filename}.svg') no-repeat;
+  background: url('~src/assets/img/common/#{$filename}.png') no-repeat;
+  background: url('~src/assets/img/common/#{$filename}.svg') no-repeat;
   height: $height;
   width: $width;
   background-size: contain;
