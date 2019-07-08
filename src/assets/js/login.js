@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", event => {
-    const app = firebase.app();
-    console.log(app);
+    console.log('loaded');
 });
 
 function googleLogin() {
+    console.log('test');
     const provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth().signInWithPopup(provider)

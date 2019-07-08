@@ -46,12 +46,31 @@
     }
   </script>
 
+  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
   <script src="assets/js/jquery.slim.min.js"></script>
   <script src="assets/js/tether.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/jquery.scrolldepth.min.js"></script>
   <script src="assets/js/script.js"></script>
+  <script src="assets/js/login.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <script>
+  // TODO: Replace the following with your app's Firebase project configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyB1Wf6puFmyZvRbWLw2KL1121vlE4bS1Y8",
+      authDomain: "campfire-test-8e05b.firebaseapp.com",
+      databaseURL: "https://campfire-test-8e05b.firebaseio.com",
+      projectId: "campfire-test-8e05b",
+      storageBucket: "",
+      messagingSenderId: "193597108461",
+      appId: "1:193597108461:web:8526f6a99d0dcf56"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 
 <body>
