@@ -1,0 +1,79 @@
+<main id="content" tabindex="-1">
+    <header class="page-header-3">
+        <div class="row">
+            <div class="page-header-title-1">
+                <h1>To those who helped shape us...</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="about-us">
+        <img src="assets/img/about-us/appreciation.png"
+            alt="Illustration of a laptop with various govtech and civictech stickers on the back of it."
+            class="about-skylight-img">
+
+        <section class="page-block">
+            <div class="page-block-header-2">
+                <h2>Our story</h2>
+            </div>
+
+            <div class="about-info">
+                <div class="about-info-row">
+                    <div class="about-info-col">
+                        <p>
+                            We cool.
+
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+
+                        <p>
+                            we cooler.
+
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="meet-the-team" class="page-block">
+            <div class="page-block-header-2">
+                <h2>Meet the team</h2>
+            </div>
+
+            <div class="employees">
+                <div class="employees-row hanging-col-size-3">
+
+                    <div *ngFor="let member of members" class="employee-col">
+                        <div class="employee-card">
+                            <div role="img" class="employee-img" [style.background-image]="'url(' + member.img + ')'"
+                                title="Photo of {{ member.name }}"></div>
+                            <div class="employee-block">
+                                <h3 class="employee-title">
+                                    {{ member.name }}
+                                </h3>
+                                <h4 class="employee-subtitle">
+                                    {{ member.role }}
+                                </h4>
+                                <p class="employee-text">
+                                    {{ member.bio }}
+                                </p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>

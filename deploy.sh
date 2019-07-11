@@ -1,5 +1,8 @@
 #!/bin/bash
 SERVER=https://campfirehi.github.io/campfire-front/
 
-ng build --prod --base-href "$SERVER" 
-ngh
+mkdir -p dist
+if ng build --prod --base-href "$SERVER"; then
+    echo "Build successfully. Now deploying..."
+    ngh
+fi
