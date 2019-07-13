@@ -9,7 +9,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { LoginComponent } from './login/login.component';
+import { environment } from '../environments/environment';
+import * as firebase from 'firebase';
+import 'firebase/auth';
+import 'firebase/database';
 
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
@@ -23,7 +28,7 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
