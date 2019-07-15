@@ -10,11 +10,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AboutUsComponent } from './about-us/about-us.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../environments/environment';
-import * as firebase from 'firebase';
-import 'firebase/auth';
-import 'firebase/database';
-
-firebase.initializeApp(environment.firebase);
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +25,9 @@ firebase.initializeApp(environment.firebase);
     LoginComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
   ],
