@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+require("firebase/auth");
+require("firebase/storage");
+require("firebase/database");
 
 @Component({
   selector: 'app-login',
@@ -57,8 +60,13 @@ export class LoginComponent implements OnInit {
   doRegister(value){
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-      .then(res => {
-        resolve(res);
+      .then(function(response) {
+        firebase.database().ref("users/"+ response.user.uid).set({
+           email: response.user.email,
+           // Implement later if displayName is decided
+           // displayName: response.user.displayName,
+           uid: response.user.uid
+        });
       }, err => reject(err))
     })
   }
