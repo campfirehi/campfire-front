@@ -17,6 +17,9 @@ import { environment } from 'src/environments/environment';
 import { CanActivateViaAuthGuard } from './routing/auth-guard';
 import { DummyAuthGuard } from './routing/dummy-auth-guard';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
+import { DashboardMainComponent } from './dashboard-main/dashboard-main.component';
+import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import { DashboardTopicComponent } from './dashboard-topic/dashboard-topic.component';
 
 
 @NgModule({
@@ -29,6 +32,9 @@ import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
     AboutUsComponent,
     DashboardPageComponent,
     UserSidebarComponent,
+    DashboardMainComponent,
+    DashboardUserComponent,
+    DashboardTopicComponent,
   ],
   imports: [
     BrowserModule,

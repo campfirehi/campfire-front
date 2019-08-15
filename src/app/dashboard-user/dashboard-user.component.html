@@ -1,0 +1,12 @@
+<div>
+    <h5>Participating Topics</h5>
+    <p> working with 75 community members</p>
+    <!-- <ng-template ngFor="let topic of topics">
+        <app-dashboard-topic></app-dashboard-topic>
+        <hr>
+    </ng-template> -->
+    <ng-template ngFor let-topic [ngForOf]="topics">
+        <app-dashboard-topic></app-dashboard-topic>
+        <hr>
+    </ng-template>
+</div>

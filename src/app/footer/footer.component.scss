@@ -7,7 +7,13 @@
 .footer {
     @include container-fluid-base;
     @extend %py-5;
-    flex-shrink: 0;
+    
+    bottom: 0px;
+    // background-color: yellow;
+    position: absolute;
+    width: 100%;
+    // text-align: right; 
+    padding-top: 10%;      
   }
   
   .footer-content {
