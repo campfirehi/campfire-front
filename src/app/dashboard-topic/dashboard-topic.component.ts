@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-topic',
@@ -10,14 +11,15 @@ export class DashboardTopicComponent implements OnInit {
   topic = "Homelessness";
   stage = "Prototyping";
   member_count = 20;
+  topic_id = "sadfsadf3ri3dfsdfa"
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  @HostListener("click") onClick(){
-    console.log("User Click using Host Listener")
+  redirect() {
+    this.router.navigate(['dashboard', 'topic', this.topic_id]);
   }
 
 
