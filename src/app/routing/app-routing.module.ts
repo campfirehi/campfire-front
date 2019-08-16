@@ -8,15 +8,18 @@ import { CanActivateViaAuthGuard } from './auth-guard';
 import { environment } from 'src/environments/environment';
 import { DummyAuthGuard } from './dummy-auth-guard';
 import { DashboardUserComponent } from '../dashboard-user/dashboard-user.component';
+import { DashboardCanvasComponent } from '../dashboard-canvas/dashboard-canvas.component';
 
 const authGuard = environment.production ? CanActivateViaAuthGuard : DummyAuthGuard;
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'about', component: AboutUsComponent },
-  { path: 'dashboard', component: DashboardPageComponent, canActivate: [authGuard],
+  {
+    path: 'dashboard', component: DashboardPageComponent, canActivate: [authGuard],
     children: [
-      {path: 'home', component: DashboardUserComponent}
+      { path: 'home', component: DashboardUserComponent },
+      { path: 'topic/:id', component: DashboardCanvasComponent }
     ]
 
   },

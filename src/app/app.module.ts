@@ -10,8 +10,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AboutUsComponent } from './about-us/about-us.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { CanActivateViaAuthGuard } from './routing/auth-guard';
@@ -20,7 +18,8 @@ import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
 import { DashboardMainComponent } from './dashboard-main/dashboard-main.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { DashboardTopicComponent } from './dashboard-topic/dashboard-topic.component';
-
+import { CanvasWhiteboardModule } from 'ng2-canvas-whiteboard';
+import { DashboardCanvasComponent } from './dashboard-canvas/dashboard-canvas.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +34,7 @@ import { DashboardTopicComponent } from './dashboard-topic/dashboard-topic.compo
     DashboardMainComponent,
     DashboardUserComponent,
     DashboardTopicComponent,
+    DashboardCanvasComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +43,7 @@ import { DashboardTopicComponent } from './dashboard-topic/dashboard-topic.compo
     // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     // AngularFireStorageModule // imports firebase/storage only needed for storage features
+    CanvasWhiteboardModule
   ],
   providers: [CanActivateViaAuthGuard, DummyAuthGuard],
   bootstrap: [AppComponent]
