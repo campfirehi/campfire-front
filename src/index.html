@@ -46,16 +46,58 @@
     }
   </script>
 
-  <script src="assets/js/jquery.slim.min.js"></script>
+  <style type="text/css">
+  </style>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="https://awwapp.com/static/widget/css/toolbar_style.css">
+  <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
+  <!--<script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>-->
+
+  <!--<script src="assets/js/jquery.slim.min.js"></script>-->
   <script src="assets/js/tether.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
   <script src="assets/js/jquery.scrolldepth.min.js"></script>
   <script src="assets/js/script.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
 <body>
   <app-root></app-root>
-</body>
+  <script>
+    var aww = null;
+    document.addEventListener('whiteboardReady', function(e) { 
+        aww = new AwwBoard('#aww-wrapper', {
+            apiKey: '17b81ad8-cd02-4061-8475-9666eceace71',
+            multiPage: true,
+            sendUserPointer: true,
+            showUserPointers: true
+        });
+        setTimeout(() => {
+        $.ajax({
+            'method': 'GET',
+            'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
+          }).done(function(res, status) {
+            $('#aww-wrapper').append(res);
+
+            // remove logo
+            document.querySelectorAll('.logo__box').forEach(function(a){
+            a.remove();
+            });
+
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.src = "https://awwapp.com/static/widget/sample_toolbar.js";
+            document.getElementsByTagName('head')[0].appendChild(s);
+            
+            setTimeout(() => {
+              initToolbar();
+            }, 10000);
+
+          });
+        }, 0);
+    }, false );
+  </script>
+</body> 
 
 </html>
