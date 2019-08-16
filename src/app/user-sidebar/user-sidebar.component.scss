@@ -23,6 +23,15 @@
   #wrapper.toggled #sidebar-wrapper {
     margin-left: 0;
   }
+
+  .list-group-item {
+    justify-content: center;
+    background-color: #E0F2F1;
+  }
+
+  #sidebar-wrapper {
+    background-color: #E0F2F1;
+  }
   
   @media (min-width: 768px) {
     #sidebar-wrapper {
@@ -38,3 +47,4 @@
       margin-left: -15rem;
     }
   }
+
