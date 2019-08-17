@@ -1,15 +1,21 @@
-<div id="myCanvasContainer">
-        <canvas width="1000" height="1000" id="myCanvas">
-         <p>Anything in here will be replaced on browsers that support the canvas element</p>
-         <ul>
-          <li><a (click)="explore()" class="wordcloud_topic" style="font-size: 100pt;" [style.color]="color[0]">Homelessness</a></li>
-          <li><a (click)="explore()" class="wordcloud_topic" style="font-size: 50pt" [style.color]="color[1]">Deforestation</a></li>
-          <li><a (click)="explore()" class="wordcloud_topic" style="font-size: 50pt" [style.color]="color[2]">Gun Safety</a></li>
-          <li><a (click)="explore()" class="wordcloud_topic" style="font-size: 50pt" [style.color]="color[3]">Domestic Violence</a></li>
-          <li><a (click)="explore()" class="wordcloud_topic" style="font-size: 50pt" [style.color]="color[4]">Economics</a></li>
-          <li><a (click)="explore()" class="wordcloud_topic" style="font-size: 50pt" [style.color]="color[5]">Housing cost</a></li>
-         </ul>
-        </canvas>
-       </div>
-
- 
+<div class="container" id="myCanvasContainer">
+        <div class="d-flex justify-content-between">
+                <canvas width="1000" height="1000" id="myCanvas">
+                        <p>Anything in here will be replaced on browsers that support the canvas element</p>
+                        <ul>
+                                <li><a (click)="explore('Homelessness')" class="wordcloud_topic" style="font-size: 100pt;"
+                                                [style.color]="color[0]">Homelessness</a></li>
+                                <li><a (click)="explore('Deforestation')" class="wordcloud_topic" style="font-size: 50pt"
+                                                [style.color]="color[1]">Deforestation</a></li>
+                                <li><a (click)="explore('GunSafety')" class="wordcloud_topic" style="font-size: 50pt"
+                                                [style.color]="color[2]">Gun Safety</a></li>
+                                <li><a (click)="explore('DomesticViolance')" class="wordcloud_topic" style="font-size: 50pt"
+                                                [style.color]="color[3]">Domestic Violence</a></li>
+                                <li><a (click)="explore('Economics')" class="wordcloud_topic" style="font-size: 50pt"
+                                                [style.color]="color[4]">Economics</a></li>
+                                <li><a (click)="explore('HousingCost')" class="wordcloud_topic" style="font-size: 50pt"
+                                                [style.color]="color[5]">Housing cost</a></li>
+                        </ul>
+                </canvas>
+        </div>
+</div>

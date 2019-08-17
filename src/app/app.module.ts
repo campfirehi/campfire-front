@@ -22,6 +22,7 @@ import { CanvasWhiteboardModule } from 'ng2-canvas-whiteboard';
 import { DashboardCanvasComponent } from './dashboard-canvas/dashboard-canvas.component';
 import { WordcloudComponent } from './wordcloud/wordcloud.component';
 import { DashboardPlanningComponent } from './dashboard-planning/dashboard-planning.component';
+import { ExploreForumComponent } from './explore-forum/explore-forum.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { DashboardPlanningComponent } from './dashboard-planning/dashboard-plann
     DashboardCanvasComponent,
     WordcloudComponent,
     DashboardPlanningComponent,
+    ExploreForumComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import { DashboardUserComponent } from '../dashboard-user/dashboard-user.compone
 import { DashboardCanvasComponent } from '../dashboard-canvas/dashboard-canvas.component';
 import { WordcloudComponent } from '../wordcloud/wordcloud.component';
 import { DashboardPlanningComponent } from '../dashboard-planning/dashboard-planning.component';
+import { ExploreForumComponent } from '../explore-forum/explore-forum.component';
 
 const authGuard = environment.production ? CanActivateViaAuthGuard : DummyAuthGuard;
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'wordcloud', component: WordcloudComponent },
+  { path: 'explore/:word', component: ExploreForumComponent},
   {
     path: 'dashboard', component: DashboardPageComponent, canActivate: [authGuard],
     children: [

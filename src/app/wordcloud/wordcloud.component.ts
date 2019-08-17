@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wordcloud',
@@ -9,7 +10,7 @@ export class WordcloudComponent implements OnInit {
 
   color = this.getRandomColor();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -31,8 +32,9 @@ export class WordcloudComponent implements OnInit {
     return colorList;
   }
 
-  explore() {
+  explore(word) {
     console.log('explore called');
+    this.router.navigate(['explore', word]);
     return false;
   }
 }
