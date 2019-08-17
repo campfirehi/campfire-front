@@ -12,10 +12,10 @@
 // Brand
 @mixin brandmark($width: $nav-brand-width, $height: $nav-brand-height,
   $width-sm-down: $nav-brand-width-sm-down, $height-sm-down: $nav-brand-height-sm-down,
-  $filename: 'logo') {
+  $filename: 'logo2') {
   @extend %d-block;
   background: url('~src/assets/img/common/#{$filename}.png') no-repeat;
-  background: url('~src/assets/img/common/#{$filename}.svg') no-repeat;
+  // background: url('~src/assets/img/common/#{$filename}.svg') no-repeat;
   height: $height;
   width: $width;
   background-size: contain;
