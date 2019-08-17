@@ -7,7 +7,7 @@
         <hr>
     </ng-template> -->
     <ng-template ngFor let-topic [ngForOf]="topics">
-        <app-dashboard-topic></app-dashboard-topic>
+        <app-dashboard-topic [topic]="topic"></app-dashboard-topic>
         <hr>
     </ng-template>
 </div>
