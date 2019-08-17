@@ -9,12 +9,14 @@ import { environment } from 'src/environments/environment';
 import { DummyAuthGuard } from './dummy-auth-guard';
 import { DashboardUserComponent } from '../dashboard-user/dashboard-user.component';
 import { DashboardCanvasComponent } from '../dashboard-canvas/dashboard-canvas.component';
+import { WordcloudComponent } from '../wordcloud/wordcloud.component';
 
 const authGuard = environment.production ? CanActivateViaAuthGuard : DummyAuthGuard;
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'about', component: AboutUsComponent },
+  { path: 'wordcloud', component: WordcloudComponent },
   {
     path: 'dashboard', component: DashboardPageComponent, canActivate: [authGuard],
     children: [
