@@ -10,6 +10,7 @@ import { DummyAuthGuard } from './dummy-auth-guard';
 import { DashboardUserComponent } from '../dashboard-user/dashboard-user.component';
 import { DashboardCanvasComponent } from '../dashboard-canvas/dashboard-canvas.component';
 import { WordcloudComponent } from '../wordcloud/wordcloud.component';
+import { DashboardPlanningComponent } from '../dashboard-planning/dashboard-planning.component';
 
 const authGuard = environment.production ? CanActivateViaAuthGuard : DummyAuthGuard;
 
@@ -21,7 +22,7 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardPageComponent, canActivate: [authGuard],
     children: [
       { path: 'home', component: DashboardUserComponent },
-      { path: 'topic/:id', component: DashboardCanvasComponent }
+      { path: 'topic/:id', component: DashboardPlanningComponent }
     ]
 
   },

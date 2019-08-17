@@ -1,5 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
+import Topic from './topic';
 
 @Component({
   selector: 'app-dashboard-topic',
@@ -8,10 +9,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardTopicComponent implements OnInit {
 
-  topic = "Homelessness";
-  stage = "Prototyping";
-  member_count = 20;
-  topic_id = "sadfsadf3ri3dfsdfa"
+  @Input() topic: Topic
 
   constructor(private router: Router) { }
 
@@ -19,7 +17,12 @@ export class DashboardTopicComponent implements OnInit {
   }
 
   redirect() {
-    this.router.navigate(['dashboard', 'topic', this.topic_id]);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          "topic": JSON.stringify(this.topic)
+      }
+  };
+    this.router.navigate(['dashboard', 'topic', this.topic.topic_id], navigationExtras);
   }
 
 
