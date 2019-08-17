@@ -104,16 +104,23 @@
   <script type="text/javascript">
     var options = {
       weight: true,
+      bgColour: null,
+      bgOutline: null,
+      textColour: null,
+      outlineColour: '#000000',
+      outlineMethod: 'colour',
     }
-    window.onload = function() {
+    document.addEventListener('wordcloudReady', function(e) {
       try {
         TagCanvas.Start('myCanvas', '', options);
+        //getRandomColor();
       } catch(e) {
         console.log(e);
         // something went wrong, hide the canvas container
         document.getElementById('myCanvasContainer').style.display = 'none';
       }
-    };
+      // getRandomColor();
+  }, false);
    </script>
 </body> 
 
