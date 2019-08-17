@@ -20,6 +20,7 @@ import { DashboardUserComponent } from './dashboard-user/dashboard-user.componen
 import { DashboardTopicComponent } from './dashboard-topic/dashboard-topic.component';
 import { CanvasWhiteboardModule } from 'ng2-canvas-whiteboard';
 import { DashboardCanvasComponent } from './dashboard-canvas/dashboard-canvas.component';
+import { WordcloudComponent } from './wordcloud/wordcloud.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DashboardCanvasComponent } from './dashboard-canvas/dashboard-canvas.co
     DashboardUserComponent,
     DashboardTopicComponent,
     DashboardCanvasComponent,
+    WordcloudComponent,
   ],
   imports: [
     BrowserModule,
