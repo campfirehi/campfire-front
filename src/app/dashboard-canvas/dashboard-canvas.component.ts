@@ -14,6 +14,11 @@ export class DashboardCanvasComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    var event = new Event('whiteboardReady');
+    document.dispatchEvent(event);
+  }
+
   sendBatchUpdate(updates: CanvasWhiteboardUpdate[]) {
     console.log(updates);
   }

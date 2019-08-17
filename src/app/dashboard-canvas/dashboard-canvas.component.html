@@ -22,7 +22,23 @@
     </canvas-whiteboard>
 </div>
 </div> -->
-<div class="container">
-    <p> this is where the whiteboard should be</p>
-
+<div class="container" id="whiteboard-container">
+    <div id="aww-wrapper" class="aww" style="height: 1000px; border-style: solid; border-color: red;"></div>
+    <!--<script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
+    <script type="text/javascript">
+        var aww = new AwwBoard('#aww-wrapper', {
+            apiKey: '17b81ad8-cd02-4061-8475-9666eceace71',
+            multiPage: true,
+            sendUserPointer: true,
+            showUserPointers: true
+        });
+        $.ajax({
+            'method': 'GET',
+            'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
+          }).done(function(res, status) {
+            $('#aww-wrapper').append(res);
+            initToolbar();
+          });
+    </script>
+    <script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>-->
 </div>
