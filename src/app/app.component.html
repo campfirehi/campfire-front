@@ -1,6 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="content-wrapper">
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
+    <div #navbar style="display: block">
+        <app-navbar></app-navbar>
+    </div>
+    <div style="display: inline-block;" [style.min-height.px]="height">
+        <router-outlet></router-outlet>
+    </div>
+    <div #footer style="display: block">
+        <app-footer #footer></app-footer>
+    </div>
 </div>
