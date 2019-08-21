@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import Topic from '../dashboard-topic/topic';
+import Topic from '../topic/topic';
 
 @Component({
-  selector: 'app-dashboard-user',
-  templateUrl: './dashboard-user.component.html',
-  styleUrls: ['./dashboard-user.component.scss']
+  selector: 'app-topics-list',
+  templateUrl: './topics-list.component.html',
+  styleUrls: ['./topics-list.component.scss']
 })
-export class DashboardUserComponent implements OnInit {
+export class TopicsListComponent implements OnInit {
 
   topics = [
     new Topic("Homelessness", "Prototyping", 20, "dfasdf5dfsdf"),
@@ -22,4 +22,7 @@ export class DashboardUserComponent implements OnInit {
   ngOnInit() {
   }
 
+  getTotalMembers() {
+    return this.topics.reduce((sum, currentTopic) => sum + currentTopic.member_count, 0);
+  }
 }

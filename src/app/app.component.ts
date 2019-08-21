@@ -15,10 +15,7 @@ export class AppComponent {
   ngAfterViewInit() {
     setTimeout(() => {
       const maxHeight = this.vh2Px(100);
-      console.log(this.navbar.nativeElement.offsetHeight)
       this.height = maxHeight - this.navbar.nativeElement.offsetHeight - this.footer.nativeElement.offsetHeight;
-      console.log()
-
     }, 0)
   }
 

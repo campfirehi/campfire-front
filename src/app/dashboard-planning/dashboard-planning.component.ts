@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import Topic from '../dashboard-topic/topic';
+// import Topic from '../dashboard-topic/topic';
 
 @Component({
   selector: 'app-dashboard-planning',
@@ -9,7 +9,7 @@ import Topic from '../dashboard-topic/topic';
 })
 export class DashboardPlanningComponent implements OnInit {
 
-  topic: Topic
+  topic: any
 
   constructor(private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardUserComponent } from './dashboard-user.component';
+import { DtTrackComponent } from './dt-track.component';
 
-describe('DashboardUserComponent', () => {
-  let component: DashboardUserComponent;
-  let fixture: ComponentFixture<DashboardUserComponent>;
+describe('DtTrackComponent', () => {
+  let component: DtTrackComponent;
+  let fixture: ComponentFixture<DtTrackComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardUserComponent ]
+      declarations: [ DtTrackComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardUserComponent);
+    fixture = TestBed.createComponent(DtTrackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
