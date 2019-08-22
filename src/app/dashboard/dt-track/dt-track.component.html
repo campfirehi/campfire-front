@@ -1,7 +1,7 @@
 <div>
     <div class="py-3"></div>
-    <h4> {{ topic.topic }}</h4>
-    <p> with {{ topic.member_count }} community members</p>
+    <h4> {{ (detailedTopic | async)?.topic }}</h4>
+    <p> with {{ (detailedTopic | async)?.member_count }} community members</p>
     <div class="py-2"></div>
     <!-- <app-dashboard-canvas></app-dashboard-canvas> -->
 </div>
