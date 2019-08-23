@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public angularAuth: AngularFireAuth
+    private authService: AuthService,
+    private router: Router
   ) {
     this.createForm();
   }
@@ -29,39 +30,56 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  doGoogleLogin() {
-    return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.angularAuth.auth
-        .signInWithPopup(provider)
-        .then(res => {
-          resolve(res);
-        }, err => {
-          console.log(err);
-          reject(err);
-        })
-    })
+  register(formValue) {
+    this.authService.doRegister(formValue)
+      .then(res => {
+        console.log(res);
+        this.regularLogin(formValue);
+      }, err => {
+        console.log(err);
+        // this.errorMessage = err.message;
+        // this.successMessage = "";
+      })
   }
 
-  doLogin(value) {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-        .then(res => {
-          resolve(res);
-        }, err => reject(err))
-    })
+  regularLogin(formValue) {
+    this.handleLogin(formValue, this.authService.doLogin)
   }
 
-  doRegister(value) {
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-        .then(res => {
-          resolve(res);
-        }, err => reject(err))
-    })
+  googleLogin() {
+    this.handleLogin(null, this.authService.doGoogleLogin)
   }
 
+
+
+  handleLogin(formValue, handler) {
+    if (formValue != null) {
+      handler(formValue).then(res => {
+        this.successLogin(res);
+      }, err => {
+        this.errorLogin(err);
+      })
+    } else {
+      handler().then(res => {
+        this.successLogin(res);
+      }, err => {
+        this.errorLogin(err);
+      })
+    }
+  }
+
+  successLogin(res) {
+    this.errorMessage = "";
+    console.log(res)
+    this.router.navigate(['/dashboard'])
+  }
+
+  errorLogin(err) {
+    console.log(err);
+    if (err.code === "auth/user-not-found") {
+      this.errorMessage = "User not found with the given email and password combination"
+    }
+    
+  }
 }
 

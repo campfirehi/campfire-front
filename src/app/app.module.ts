@@ -15,6 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { WordcloudComponent } from './wordcloud/wordcloud.component';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './login/auth.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAuthModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
