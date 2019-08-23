@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DetailedTopic } from '../topic/detailed-topic';
+import { DetailedTopic } from '../topics-list/topic/detailed-topic';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 
@@ -16,7 +16,8 @@ export class DtTrackService {
       'topic': 'Homelessness',
       'stage': {
         'level': 1,
-        'name': 'Empathize'
+        'name': 'Empathize',
+        'max_stage': 5
       },
       'member_count': 12,
       'topic_id': id,

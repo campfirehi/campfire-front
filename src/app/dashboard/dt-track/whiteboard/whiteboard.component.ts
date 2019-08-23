@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard-canvas',
-  templateUrl: './dashboard-canvas.component.html',
-  styleUrls: ['./dashboard-canvas.component.scss']
+  selector: 'app-whiteboard',
+  templateUrl: './whiteboard.component.html',
+  styleUrls: ['./whiteboard.component.scss']
 })
-export class DashboardCanvasComponent implements OnInit {
+export class WhiteboardComponent implements OnInit {
 
   constructor(){    
   }  

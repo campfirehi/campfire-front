@@ -6,9 +6,13 @@ import { LayoutComponent } from './layout/layout.component';
 import { DummyAuthGuard } from './routing/dummy-auth-guard';
 import { CanActivateViaAuthGuard } from './routing/auth-guard';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
-import { TopicComponent } from './topic/topic.component';
+import { TopicComponent } from './topics-list/topic/topic.component';
 import { TopicsListComponent } from './topics-list/topics-list.component';
 import { DtTrackComponent } from './dt-track/dt-track.component';
+import { WhiteboardComponent } from './dt-track/whiteboard/whiteboard.component';
+import { DtStepsComponent } from './dt-track/dt-steps/dt-steps.component';
+import { FillPipe } from './fill.pipe';
+import { StepComponent } from './dt-track/dt-steps/step/step.component';
 
 
 @NgModule({
@@ -17,7 +21,11 @@ import { DtTrackComponent } from './dt-track/dt-track.component';
     UserSidebarComponent,
     TopicComponent,
     TopicsListComponent,
-    DtTrackComponent
+    DtTrackComponent,
+    WhiteboardComponent,
+    DtStepsComponent,
+    FillPipe,
+    StepComponent
   ],
   imports: [
     CommonModule,

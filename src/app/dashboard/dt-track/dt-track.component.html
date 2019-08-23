@@ -1,7 +1,9 @@
-<div>
+<div *ngIf="detailedTopic">
     <div class="py-3"></div>
-    <h4> {{ (detailedTopic | async)?.topic }}</h4>
-    <p> with {{ (detailedTopic | async)?.member_count }} community members</p>
+    <h4> {{ detailedTopic.topic }}</h4>
+    <p> with {{ detailedTopic.member_count }} community members</p>
     <div class="py-2"></div>
-    <!-- <app-dashboard-canvas></app-dashboard-canvas> -->
+    <app-whiteboard></app-whiteboard>
+    <div class="py-2"></div>
+    <app-dt-steps [stage]="detailedTopic.stage"></app-dt-steps>
 </div>

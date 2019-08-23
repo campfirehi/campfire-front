@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DtTrackService } from './dt-track.service';
-import { DetailedTopic } from '../topic/detailed-topic';
+import { DetailedTopic } from '../topics-list/topic/detailed-topic';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -11,9 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class DtTrackComponent implements OnInit, OnDestroy {
 
-  detailedTopic: Observable<DetailedTopic> =  null;
+  detailedTopic: DetailedTopic;
   private routeSubscriber: any;
-
 
   constructor(private dtService: DtTrackService,
     private route: ActivatedRoute) { }
@@ -22,7 +21,7 @@ export class DtTrackComponent implements OnInit, OnDestroy {
     this.routeSubscriber = this.route.params.subscribe(
       params => {
         const topicId = params['id'];
-        this.detailedTopic = this.dtService.getDetailedTopic(topicId);
+        this.dtService.getDetailedTopic(topicId).subscribe((received) => this.detailedTopic = received)
       }
     );
 

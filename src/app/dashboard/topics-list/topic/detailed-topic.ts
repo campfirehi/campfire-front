@@ -1,6 +1,7 @@
 export interface Stage {
     level: number;
     name: string;
+    max_stage: number;
 };
 
 export interface DetailedTopic {

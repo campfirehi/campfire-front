@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardCanvasComponent } from './dashboard-canvas.component';
+import { StepComponent } from './step.component';
 
-describe('DashboardCanvasComponent', () => {
-  let component: DashboardCanvasComponent;
-  let fixture: ComponentFixture<DashboardCanvasComponent>;
+describe('StepComponent', () => {
+  let component: StepComponent;
+  let fixture: ComponentFixture<StepComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardCanvasComponent ]
+      declarations: [ StepComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardCanvasComponent);
+    fixture = TestBed.createComponent(StepComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
