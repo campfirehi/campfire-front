@@ -32,7 +32,7 @@
                 <button type="submit" class="btn btn-info btn-block btn-register" (click)="register(loginForm.value)">Register</button>
             </div>
         </div>
-        <p> {{errorMessage}}</p>
+        <p *ngIf="errorMessage" class="alert alert-danger"> {{errorMessage}}</p>
     </form>
 
 </div>

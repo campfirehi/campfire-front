@@ -78,6 +78,8 @@ export class LoginComponent implements OnInit {
     console.log(err);
     if (err.code === "auth/user-not-found") {
       this.errorMessage = "User not found with the given email and password combination"
+    } else {
+      this.errorMessage = err.message
     }
     
   }
