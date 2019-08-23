@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DtTrackService } from './dt-track.service';
-import { DetailedTopic } from '../topics-list/topic/detailed-topic';
+import { DetailedTopic, Stage } from '../topics-list/topic/detailed-topic';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,10 @@ import { Observable } from 'rxjs';
 export class DtTrackComponent implements OnInit, OnDestroy {
 
   detailedTopic: DetailedTopic;
+  stage: Stage;
+
   private routeSubscriber: any;
+  private topicId: string
 
   constructor(private dtService: DtTrackService,
     private route: ActivatedRoute) { }
@@ -20,15 +23,23 @@ export class DtTrackComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeSubscriber = this.route.params.subscribe(
       params => {
-        const topicId = params['id'];
-        this.dtService.getDetailedTopic(topicId).subscribe((received) => this.detailedTopic = received)
+        this.topicId = params['id'];
+        this.dtService.getDetailedTopic(this.topicId).subscribe((received) => {
+          this.detailedTopic = received
+          this.stage = this.detailedTopic.current_stage;
+        })
       }
     );
 
   }
 
-
   ngOnDestroy() {
     this.routeSubscriber.unsubscribe();
+  }
+
+  onStageSelected(index: number) {
+    this.dtService.getStageInfo(this.topicId, index).subscribe((newStage) => {
+      this.stage = newStage;
+    })
   }
 }

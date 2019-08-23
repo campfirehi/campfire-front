@@ -1,13 +1,14 @@
 export interface Stage {
     level: number;
     name: string;
-    max_stage: number;
+    board_url: string;
 };
 
 export interface DetailedTopic {
     topic: string;
-    stage: Stage;
+    current_stage: Stage;
     member_count: number;
     topic_id: string;
-    board_url: string;
+    best_level: number;
+    max_level: number;
 };

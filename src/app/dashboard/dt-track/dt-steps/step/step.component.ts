@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export enum Step {
   Past = 'lightgreen',
@@ -13,14 +13,26 @@ export enum Step {
 })
 export class StepComponent implements OnInit {
 
-  @Input('step') active: Step
-  backgroundColor: string
+  @Input('step') step: Step
+  @Input('index') index: number;
 
+  @Output() selected = new EventEmitter<number>();
+
+  stepStyle;
 
   constructor() { }
 
   ngOnInit() {
-    this.backgroundColor = this.active.valueOf()
+    this.stepStyle = {
+      'background-color': this.step.valueOf(),
+      'cursor': this.step != Step.Future ? 'pointer' : 'not-allowed'
+    };
+
   }
 
+  selectStage() {
+    if (this.step != Step.Future) {
+      this.selected.emit(this.index);
+    }
+  }
 }

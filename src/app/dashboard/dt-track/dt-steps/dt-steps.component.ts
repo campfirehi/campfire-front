@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Stage } from '../../topics-list/topic/detailed-topic';
 import { Step } from './step/step.component';
 
@@ -10,6 +10,10 @@ import { Step } from './step/step.component';
 export class DtStepsComponent implements OnInit {
 
   @Input('stage') stage: Stage;
+  @Input('max-level') max_level: number;
+  @Input('best-level') best_level: number;
+
+  @Output() selected = new EventEmitter<number>();
 
   constructor() { }
 
@@ -19,11 +23,14 @@ export class DtStepsComponent implements OnInit {
   getStep(index: number): Step {
     if (this.stage.level - 1 == index) {
       return Step.Current;
-    } else if (this.stage.level - 1 > index) {
+    } else if (this.best_level - 1 >= index) {
       return Step.Past;
-    } else if (this.stage.level - 1 < index) {
+    } else if (this.best_level - 1 < index) {
       return Step.Future;
-    }
+    } 
   }
 
+  onSelected(index: number) {
+    this.selected.emit(index)
+  }
 }

@@ -2,8 +2,9 @@
     <span class="inline-block-text-box">Stage {{stage.level}}: {{stage.name}}</span>
     <span class="px-2"></span>
 
-    <ng-template ngFor let-index [ngForOf]="stage.max_stage | fill">
-        <app-step class="inline-block-text-box" [step]="getStep(index)"> </app-step>
+    <ng-template ngFor let-index [ngForOf]="max_level | fill">
+        <app-step class="inline-block-text-box" [step]="getStep(index)" [index]="index" (selected)="onSelected($event)">
+        </app-step>
         <span class="px-2"></span>
     </ng-template>
 </div>
