@@ -16,7 +16,6 @@ export class AppComponent {
     setTimeout(() => {
       const maxHeight = this.vh2Px(100);
       this.height = maxHeight - this.navbar.nativeElement.offsetHeight - this.footer.nativeElement.offsetHeight;
-      console.log("my height: " + this.height, "max height: " + maxHeight)
     }, 0)
   }
 

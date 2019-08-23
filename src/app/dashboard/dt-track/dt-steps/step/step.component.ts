@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 
 export enum Step {
   Past = 'lightgreen',
@@ -9,25 +9,32 @@ export enum Step {
 @Component({
   selector: 'app-step',
   templateUrl: './step.component.html',
-  styleUrls: ['./step.component.scss']
+  styleUrls: ['./step.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StepComponent implements OnInit {
+export class StepComponent implements OnInit, OnChanges {
 
   @Input('step') step: Step
   @Input('index') index: number;
 
   @Output() selected = new EventEmitter<number>();
 
-  stepStyle;
-
   constructor() { }
 
   ngOnInit() {
-    this.stepStyle = {
-      'background-color': this.step.valueOf(),
-      'cursor': this.step != Step.Future ? 'pointer' : 'not-allowed'
-    };
+  }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+  }
+
+  getCursor() {
+    console.log(this.index)
+    return this.step != Step.Future ? 'pointer' : 'not-allowed';
+  }
+
+  getBg() {
+    return this.step.valueOf();
   }
 
   selectStage() {

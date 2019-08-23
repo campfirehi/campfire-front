@@ -1,3 +1,8 @@
-<span class="dot" [ngStyle]="stepStyle" (click)="selectStage()">
+<!-- <span class="dot" [ngStyle]="stepStyle" (click)="selectStage()">
+    <span class="placeholder">1</span>
+</span> -->
+
+
+<span class="dot" [style.cursor]="getCursor()" [style.background-color]="getBg()" (click)="selectStage()">
     <span class="placeholder">1</span>
 </span>
