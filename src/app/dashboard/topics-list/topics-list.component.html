@@ -1,0 +1,10 @@
+<div class="py-3"></div>
+<div>
+    <h5>Participating Topics</h5>
+    <p> working with {{ getTotalMembers()}} community members</p>
+    
+    <ng-template ngFor let-topic [ngForOf]="topics">
+        <app-topic [topic]="topic"></app-topic>
+        <hr>
+    </ng-template>
+</div>
