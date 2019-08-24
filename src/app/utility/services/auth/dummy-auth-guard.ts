@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DummyAuthGuard implements CanActivate {
     user: firebase.User;
 
-    constructor() {}
+    constructor() { }
 
     canActivate() {
         console.log("Not logged in, but in test environment I assume that you are.");

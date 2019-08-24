@@ -22,7 +22,6 @@ export class LayoutComponent implements OnInit {
       switch (true) {
         case event instanceof NavigationStart: {
           this.loading = true;
-          console.log("loading = true")
           break;
         }
 

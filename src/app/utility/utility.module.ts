@@ -1,18 +1,32 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoadingComponent } from './loading/loading.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ScriptLoadingService } from './services/scripts-loader/script-loading.service';
+import { FillPipe } from './pipes/fill.pipe';
+import { CanActivateViaAuthGuard } from './services/auth/auth-guard';
+import { DummyAuthGuard } from './services/auth/dummy-auth-guard';
+import { AuthService } from './services/auth/auth.service';
 
 
 
 @NgModule({
   declarations: [
-    LoadingComponent
+    LoadingComponent,
+    FillPipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    LoadingComponent
+    LoadingComponent,
+    FillPipe
   ]
 })
-export class UtilityModule { }
+export class UtilityModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: UtilityModule,
+      providers: [ ScriptLoadingService, CanActivateViaAuthGuard, DummyAuthGuard, AuthService ]
+    };
+  }
+}
