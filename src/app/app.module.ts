@@ -13,9 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { WordcloudComponent } from './wordcloud/wordcloud.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './utility/services/auth/auth.service';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { UtilityModule } from './utility/utility.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +32,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    UtilityModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

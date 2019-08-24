@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    // private afs: AngularFirestore
+    private afs: AngularFirestore
   ) { }
 
   doFacebookLogin() {
@@ -61,11 +61,10 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
         .then(res => {
-          // const userCollection = this.afs.collection('users')
-          // userCollection.add({
-          //   email: res.user.email,
-          //   uid: res.user.uid
-          // })
+          const userCollection = this.afs.collection('users')
+          userCollection.doc(res.user.uid).set({
+            email: res.user.email,
+          })
           resolve(res);
         }, err => reject(err))
     })
