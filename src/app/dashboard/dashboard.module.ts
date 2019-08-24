@@ -13,6 +13,8 @@ import { WhiteboardComponent } from './dt-track/whiteboard/whiteboard.component'
 import { DtStepsComponent } from './dt-track/dt-steps/dt-steps.component';
 import { FillPipe } from './fill.pipe';
 import { StepComponent } from './dt-track/dt-steps/step/step.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UtilityModule } from '../utility/utility.module';
 
 
 @NgModule({
@@ -25,11 +27,13 @@ import { StepComponent } from './dt-track/dt-steps/step/step.component';
     WhiteboardComponent,
     DtStepsComponent,
     FillPipe,
-    StepComponent
+    StepComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    UtilityModule
   ],
   providers: [DummyAuthGuard, CanActivateViaAuthGuard]
 })

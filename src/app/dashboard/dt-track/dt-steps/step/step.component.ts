@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 export enum Step {
   Past = 'lightgreen',
@@ -12,7 +12,7 @@ export enum Step {
   styleUrls: ['./step.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StepComponent implements OnInit, OnChanges {
+export class StepComponent implements OnInit {
 
   @Input('step') step: Step
   @Input('index') index: number;
@@ -24,12 +24,7 @@ export class StepComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
-  }
-
   getCursor() {
-    console.log(this.index)
     return this.step != Step.Future ? 'pointer' : 'not-allowed';
   }
 

@@ -1,7 +1,9 @@
 <div class="dashboard-main d-flex">
-
     <app-user-sidebar></app-user-sidebar>
     <div class="page-content-wrapper container-fluid">
+        <div *ngIf="loading" class="text-center">
+            <app-loading></app-loading>
+        </div>
         <router-outlet></router-outlet>
     </div>
 

@@ -36,9 +36,7 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.regularLogin(formValue);
       }, err => {
-        console.log(err);
-        // this.errorMessage = err.message;
-        // this.successMessage = "";
+        this.errorLogin(err);
       })
   }
 
@@ -49,8 +47,6 @@ export class LoginComponent implements OnInit {
   googleLogin() {
     this.handleLogin(null, this.authService.doGoogleLogin)
   }
-
-
 
   handleLogin(formValue, handler) {
     if (formValue != null) {
@@ -71,7 +67,7 @@ export class LoginComponent implements OnInit {
   successLogin(res) {
     this.errorMessage = "";
     console.log(res)
-    this.router.navigate(['/dashboard'])
+    this.router.navigate(['/dashboard', 'profile'])
   }
 
   errorLogin(err) {
@@ -81,7 +77,7 @@ export class LoginComponent implements OnInit {
     } else {
       this.errorMessage = err.message
     }
-    
+
   }
 }
 
