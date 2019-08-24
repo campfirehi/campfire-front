@@ -6,6 +6,10 @@ import { FillPipe } from './pipes/fill.pipe';
 import { CanActivateViaAuthGuard } from './services/auth/auth-guard';
 import { DummyAuthGuard } from './services/auth/dummy-auth-guard';
 import { AuthService } from './services/auth/auth.service';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 
@@ -15,7 +19,10 @@ import { AuthService } from './services/auth/auth.service';
     FillPipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule.enablePersistence()
   ],
   exports: [
     LoadingComponent,
@@ -26,7 +33,7 @@ export class UtilityModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: UtilityModule,
-      providers: [ ScriptLoadingService, CanActivateViaAuthGuard, DummyAuthGuard, AuthService ]
+      providers: [ScriptLoadingService, CanActivateViaAuthGuard, DummyAuthGuard, AuthService]
     };
   }
 }
