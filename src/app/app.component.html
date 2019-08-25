@@ -6,9 +6,7 @@
 
 
     <div style="display: block;" [style.min-height.px]="minHeight">
-        <div [hidden]="!(loadingConfigService.isLoading | async)" class="overlay" [style.min-height.px]="screenHeight">
-            <app-loading [screenHeight]="screenHeight"></app-loading>
-        </div>
+        <app-loading [screenHeight]="screenHeight"></app-loading>
         <router-outlet></router-outlet>
     </div>
 

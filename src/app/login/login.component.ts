@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../utility/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { LoadingConfigService } from '../utility/services/loading/loading-config.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingConfigService
   ) {
     this.createForm();
   }
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   register(formValue) {
+    this.loadingService.setLoading(true)
     this.authService.doRegister(formValue)
       .then(res => {
         console.log(res);
@@ -49,13 +52,17 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin(formValue, handler) {
+    this.loadingService.setLoading(true)
     if (formValue != null) {
+      
       handler(formValue).then(res => {
         this.successLogin(res);
       }, err => {
         this.errorLogin(err);
       })
+
     } else {
+
       handler().then(res => {
         this.successLogin(res);
       }, err => {
@@ -66,7 +73,7 @@ export class LoginComponent implements OnInit {
 
   successLogin(res) {
     this.errorMessage = "";
-    console.log(res)
+    this.loadingService.setLoading(false)
     this.router.navigate(['/dashboard', 'profile'])
   }
 
@@ -77,6 +84,7 @@ export class LoginComponent implements OnInit {
     } else {
       this.errorMessage = err.message
     }
+    this.loadingService.setLoading(false)
 
   }
 }

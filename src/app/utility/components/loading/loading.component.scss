@@ -1,0 +1,14 @@
+.overlay {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 99999;
+    opacity: 1;
+    background: rgba(233, 232, 232, 0.582);
+    transition: opacity 200ms ease-in-out;
+    border-radius: 4px;
+    width: 100%
+    // min-width: 100vw;
+ 
+  }

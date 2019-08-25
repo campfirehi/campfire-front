@@ -8,7 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewChecked {
-  
+
   minHeight = 100;
   screenHeight = 100;
   private minHeightAdjusted = false;
@@ -16,12 +16,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
   @ViewChild('navbar', { read: ElementRef, static: false }) navbar;
   @ViewChild('footer', { read: ElementRef, static: false }) footer;
 
-  constructor(private loadingConfigService: LoadingConfigService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.router.events.subscribe((routeEvent) => {
       if (routeEvent instanceof NavigationEnd) {
-        this.screenHeight = this.getContentHeight()
+        const contentHeight = this.getContentHeight()
+        this.screenHeight = contentHeight
       }
     });
   }
@@ -30,9 +31,12 @@ export class AppComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     if (!this.minHeightAdjusted) {
       setTimeout(() => {
-        const maxHeight = this.vh2Px(100);
-        this.minHeight = maxHeight - this.navbar.nativeElement.offsetHeight - this.footer.nativeElement.offsetHeight;
+        this.minHeight = this.getMinContentHeight()
         this.minHeightAdjusted = true;
+
+        if (this.screenHeight < this.minHeight) {
+          this.screenHeight = this.minHeight
+        }
       }, 0)
     }
   }
@@ -47,5 +51,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
     const footerElement = this.footer.nativeElement;
 
     return footerElement.getBoundingClientRect().top - (navBarElement.getBoundingClientRect().top + this.navbar.nativeElement.offsetHeight)
+  }
+
+  getMinContentHeight() {
+    const maxHeight = this.vh2Px(100);
+    return maxHeight - this.navbar.nativeElement.offsetHeight - this.footer.nativeElement.offsetHeight;
   }
 }

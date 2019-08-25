@@ -62,8 +62,8 @@ export class TopicService {
       const topicRefs: Array<DocumentReference> = snapshot.data().topics
       return topicRefs.map(ref => fromDocRef(ref))
     })).pipe(
-      mergeMap(a => a.map(b => b.pipe(map(c => c.payload.data())))))
-      .pipe(mergeMap(res => merge(res)))
+      mergeMap(obs => obs.map(newObs => newObs.pipe(map(snashot => snashot.payload.data())))))
+      .pipe(mergeMap(response => merge(response)))
 
     /*
       given an array of observables

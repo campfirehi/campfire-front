@@ -29,7 +29,8 @@ import { LoadingConfigService } from './services/loading/loading-config.service'
   exports: [
     LoadingComponent,
     FillPipe
-  ]
+  ],
+  providers: []
 })
 export class UtilityModule {
   static forRoot(): ModuleWithProviders {
