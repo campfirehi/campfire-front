@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { TopicService } from '../utility/services/topics/topic.service';
 import { DbTopic } from '../utility/services/topics/db-topic';
+import { LoadingConfigService } from '../utility/services/loading/loading-config.service';
 
 declare var TagCanvas: any
 
@@ -18,10 +19,12 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
 
   constructor(
     private router: Router,
-    private topicService: TopicService
+    private topicService: TopicService,
+    private loadingService: LoadingConfigService
   ) { }
 
   ngOnInit() {
+    this.loadingService.setLoading(true)
     this.topicService.getAllTopics().subscribe(topics => {
       this.topics = topics
     })
@@ -32,6 +35,7 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
     if (!this.populated && this.topics.length > 0) {
       this.initializeWordCloud()
       this.populated = true
+      this.loadingService.setLoading(false)
     }
   }
 

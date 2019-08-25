@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { TopicService } from './services/topics/topic.service';
+import { LoadingConfigService } from './services/loading/loading-config.service';
 
 
 
@@ -34,7 +35,7 @@ export class UtilityModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: UtilityModule,
-      providers: [ScriptLoadingService, CanActivateViaAuthGuard, DummyAuthGuard, AuthService, TopicService]
+      providers: [ScriptLoadingService, CanActivateViaAuthGuard, DummyAuthGuard, AuthService, TopicService, LoadingConfigService]
     };
   }
 }

@@ -15,7 +15,7 @@ export class WhiteboardComponent implements OnInit {
 
   ngAfterViewInit() {
     var event = new Event('whiteboardReady');
-    document.dispatchEvent(event);
+    document.dispatchEvent(event)
   }
 
 }

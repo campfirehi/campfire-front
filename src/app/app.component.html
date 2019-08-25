@@ -3,9 +3,16 @@
     <div #navbar style="display: block">
         <app-navbar></app-navbar>
     </div>
-    <div style="display: block;" [style.min-height.px]="height">
+
+
+    <div style="display: block;" [style.min-height.px]="minHeight">
+        <div [hidden]="!(loadingConfigService.isLoading | async)" class="overlay" [style.min-height.px]="screenHeight">
+            <app-loading [screenHeight]="screenHeight"></app-loading>
+        </div>
         <router-outlet></router-outlet>
     </div>
+
+
     <div #footer style="display: block">
         <app-footer #footer></app-footer>
     </div>
