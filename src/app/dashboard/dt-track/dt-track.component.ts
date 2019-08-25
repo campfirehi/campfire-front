@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DtTrackService } from './dt-track.service';
-import { DetailedTopic, Stage } from '../topics-list/topic/detailed-topic';
+import { DetailedTopic, Stage } from '../../utility/services/topics/detailed-topic';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscribable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dt-track',
@@ -14,7 +14,7 @@ export class DtTrackComponent implements OnInit, OnDestroy {
   detailedTopic: DetailedTopic;
   stage: Stage;
 
-  private routeSubscriber: any;
+  private routeSubscriber: Subscription;
   private topicId: string
 
   constructor(private dtService: DtTrackService,

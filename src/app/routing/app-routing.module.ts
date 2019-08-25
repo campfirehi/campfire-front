@@ -5,12 +5,14 @@ import { LandingComponent } from '../landing/landing.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
 import { WordcloudComponent } from '../wordcloud/wordcloud.component';
 import { LoginComponent } from '../login/login.component';
+import { JoinTopicComponent } from '../wordcloud/join-topic/join-topic.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'wordcloud', component: WordcloudComponent },
+  { path: 'explore', component: WordcloudComponent },
+  { path: 'explore/:topic', component: JoinTopicComponent},
   {
     path: 'dashboard',
     loadChildren: () => import('../dashboard/dashboard.module').then(mod => mod.DashboardModule)

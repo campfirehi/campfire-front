@@ -10,6 +10,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { TopicService } from './services/topics/topic.service';
 
 
 
@@ -33,7 +34,7 @@ export class UtilityModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: UtilityModule,
-      providers: [ScriptLoadingService, CanActivateViaAuthGuard, DummyAuthGuard, AuthService]
+      providers: [ScriptLoadingService, CanActivateViaAuthGuard, DummyAuthGuard, AuthService, TopicService]
     };
   }
 }

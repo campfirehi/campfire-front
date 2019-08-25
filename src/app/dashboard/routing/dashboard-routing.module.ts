@@ -11,7 +11,6 @@ import { ProfileComponent } from '../profile/profile.component';
 
 const authGuard = environment.production ? CanActivateViaAuthGuard : DummyAuthGuard;
 
-
 const routes: Routes = [
   {
     path: '', component: LayoutComponent, canActivate: [authGuard],

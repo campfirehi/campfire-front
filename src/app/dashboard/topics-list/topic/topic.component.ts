@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import Topic from './topic';
+import Topic from '../../../utility/services/topics/topic';
 
 @Component({
   selector: 'app-topic',

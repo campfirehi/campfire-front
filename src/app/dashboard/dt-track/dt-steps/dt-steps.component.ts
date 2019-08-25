@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Stage } from '../../topics-list/topic/detailed-topic';
+import { Stage } from '../../../utility/services/topics/detailed-topic';
 import { Step } from './step/step.component';
 
 @Component({

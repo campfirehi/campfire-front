@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DetailedTopic, Stage } from '../topics-list/topic/detailed-topic';
+import { DetailedTopic, Stage } from '../../utility/services/topics/detailed-topic';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/internal/operators';
 

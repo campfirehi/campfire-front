@@ -49,8 +49,8 @@
   <style type="text/css">
   </style>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <link rel="stylesheet" href="https://awwapp.com/static/widget/css/toolbar_style.css">
-  <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://awwapp.com/static/widget/css/toolbar_style.css">
+  <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script> -->
   <script src="assets/js/tagcanvas.js" type="text/javascript"></script>
   <!--<script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>-->
 
@@ -103,28 +103,6 @@
         }, 0);
     }, false );
   </script>
- 
-  <script type="text/javascript">
-    var options = {
-      weight: true,
-      bgColour: null,
-      bgOutline: null,
-      textColour: null,
-      outlineColour: '#000000',
-      outlineMethod: 'colour',
-    }
-    document.addEventListener('wordcloudReady', function(e) {
-      try {
-        TagCanvas.Start('myCanvas', '', options);
-        //getRandomColor();
-      } catch(e) {
-        console.log(e);
-        // something went wrong, hide the canvas container
-        document.getElementById('myCanvasContainer').style.display = 'none';
-      }
-      // getRandomColor();
-  }, false);
-   </script>
 </body> 
 
 </html>

@@ -1,39 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Router } from '@angular/router';
+import { TopicService } from '../utility/services/topics/topic.service';
+import { DbTopic } from '../utility/services/topics/db-topic';
+
+declare var TagCanvas: any
 
 @Component({
   selector: 'app-wordcloud',
   templateUrl: './wordcloud.component.html',
   styleUrls: ['./wordcloud.component.scss']
 })
-export class WordcloudComponent implements OnInit {
+export class WordcloudComponent implements OnInit, AfterViewChecked {
 
-  color = this.getRandomColor();
+  topics: Array<DbTopic> = []
 
-  constructor() { }
+  private populated = false
+
+  constructor(
+    private router: Router,
+    private topicService: TopicService
+  ) { }
 
   ngOnInit() {
+    this.topicService.getAllTopics().subscribe(topics => {
+      this.topics = topics
+    })
   }
 
-  ngAfterViewInit() {
-    var event = new Event('wordcloudReady');
-    document.dispatchEvent(event);
+
+  ngAfterViewChecked() {
+    if (!this.populated && this.topics.length > 0) {
+      this.initializeWordCloud()
+      this.populated = true
+    }
   }
 
   getRandomColor() {
-    //var elements = document.getElementsByClassName('wordcloud_topic');
-    var colorList = [];
-    for (var i = 0; i < 6; i++) {
-        var color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-        colorList.push(color);
-        //elements[i].style.color= color;
-    }
-    console.log(colorList);
-    return colorList;
+    const color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+    return color;
   }
 
-  explore() {
-    console.log('explore called');
+  explore(topic: DbTopic) {
+    // this.router.navigate(['explore', topic.id])
+    topic.data.members = []
+    this.router.navigateByUrl('explore/' + topic.id,  {state: topic})
     return false;
   }
+
+  initializeWordCloud() {
+    const options = {
+      weight: true,
+      bgColour: null,
+      bgOutline: null,
+      textColour: null,
+      outlineColour: '#000000',
+      outlineMethod: 'colour',
+    }
+    try {
+      TagCanvas.Start('myCanvas', '', options);
+      //getRandomColor();
+    } catch (e) {
+      console.log(e);
+      // something went wrong, hide the canvas container
+      document.getElementById('myCanvasContainer').style.display = 'none';
+    }
+  }
 }
+
 

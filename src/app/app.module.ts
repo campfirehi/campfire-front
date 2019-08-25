@@ -12,8 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WordcloudComponent } from './wordcloud/wordcloud.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './utility/services/auth/auth.service';
 import { UtilityModule } from './utility/utility.module';
+import { JoinTopicComponent } from './wordcloud/join-topic/join-topic.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { UtilityModule } from './utility/utility.module';
     AboutUsComponent,
     LoginComponent,
     WordcloudComponent,
+    JoinTopicComponent,
 
   ],
   imports: [
@@ -34,7 +35,7 @@ import { UtilityModule } from './utility/utility.module';
     ReactiveFormsModule,
     UtilityModule
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

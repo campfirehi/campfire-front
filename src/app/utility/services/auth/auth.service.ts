@@ -64,6 +64,7 @@ export class AuthService {
           const userCollection = this.afs.collection('users')
           userCollection.doc(res.user.uid).set({
             email: res.user.email,
+            topics: []
           })
           resolve(res);
         }, err => reject(err))
