@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentReference, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference, AngularFirestoreDocument, fromDocRef } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { map } from 'rxjs/operators';
+import { map, every, mergeMap, flatMap } from 'rxjs/operators';
 import { DbTopic } from './db-topic';
-import { Observable, from } from 'rxjs';
+import { Observable, from, forkJoin, of, merge } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,7 @@ export class TopicService {
   }
 
   getAllTopics(): Observable<Array<DbTopic>> {
-=    return this.afs.collection('topics').get().pipe(map(snapshot => {
+    return this.afs.collection('topics').get().pipe(map(snapshot => {
       const topics = []
       snapshot.docs.forEach(
         doc => {
@@ -59,22 +59,21 @@ export class TopicService {
   getTopicsByUser(user) {
     const userUid = user.uid
     return this.afs.collection('users').doc(userUid).get().pipe(map(snapshot => {
-      // const userDb = snapshot.data()
       const topicRefs: Array<DocumentReference> = snapshot.data().topics
-      topicRefs.forEach( topic => {
-        topic.get().then((d) => {
-          console.log(d.data())
-        })
-      })
+      return topicRefs.map(ref => fromDocRef(ref))
+    })).pipe(
+      mergeMap(a => a.map(b => b.pipe(map(c => c.payload.data())))))
+      .pipe(mergeMap(res => merge(res)))
 
-      return topicRefs
-    }))
-      // .pipe(from)
-      // .pipe(map(a => {
-      //   a.forEach(b => {
-      //     console.log(b)
-      //   })
-      // }))
+    /*
+      given an array of observables
+      for each observable
+        map it to a new observable that calls payload.data() when subscribed
+      
+      for each new observable
+        subscribe it (merge)
+
+    */
   }
 
   getTopicById(topicId): Observable<DbTopic> {

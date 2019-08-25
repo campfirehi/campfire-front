@@ -49,11 +49,10 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
     this.afAuth.user.subscribe(
       user => {
         if (user) {
-          // this.topicService.joinTopic(user, this.topic).subscribe(() => {
-          //   this.router.navigate(['dashboard'])
-          // })
-          this.topicService.getTopicsByUser(user).subscribe(a => console.log(a))
-
+          this.topicService.joinTopic(user, this.topic).subscribe(() => {
+            this.router.navigate(['dashboard'])
+          })
+          
         } else {
 
           console.log('not logged in')
