@@ -11,9 +11,7 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore
-  ) { 
-    this.doFacebookLogin = this.doFacebookLogin.bind(this)
-    // this.doGoogleLogin = this.doGoogleLogin.bind(this)
+  ) {
   }
 
   doFacebookLogin() {
@@ -52,7 +50,14 @@ export class AuthService {
       this.afAuth.auth
         .signInWithPopup(provider)
         .then(res => {
-          resolve(res);
+          if (res.additionalUserInfo.isNewUser) {
+            this.saveUserToDb(res.user.email, res.user.uid).then(() => {
+              console.log('pau saving ' + res.user.email)
+              resolve(res)
+            })
+          } else {
+            resolve(res);
+          }
         }, err => {
           console.log(err);
           reject(err);
@@ -64,12 +69,9 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
         .then(res => {
-          const userCollection = this.afs.collection('users')
-          userCollection.doc(res.user.uid).set({
-            email: res.user.email,
-            topics: []
-          })
-          resolve(res);
+          this.saveUserToDb(res.user.email, res.user.uid).then(() =>
+            resolve(res)
+          )
         }, err => reject(err))
     })
   }
@@ -93,6 +95,14 @@ export class AuthService {
         reject();
       }
     });
+  }
+
+  saveUserToDb(email, uid) {
+    const userCollection = this.afs.collection('users')
+    return userCollection.doc(uid).set({
+      email: email,
+      topics: []
+    })
   }
 
 

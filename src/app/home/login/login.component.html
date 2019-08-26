@@ -1,22 +1,25 @@
 <div class="py-3"></div>
 <div class="login-form">
+
+    <div class="alert" id="status"></div>
+    <h2 class="text-center">Sign in</h2>
+    <div class="text-center social-btn">
+        <button class="btn btn-danger btn-block" (click)="googleLogin()">
+            <i class="fa fa-google"></i>Sign in with Google</button>
+    </div>
+    <div class="or-seperator">
+        <i>or</i>
+    </div>
     <form [formGroup]="loginForm">
+
         <div class="form-group">
-            <div class="alert" id="status"></div>
-            <h2 class="text-center">Sign in</h2>
-            <div class="text-center social-btn">
-                <button class="btn btn-danger btn-block" (click)="googleLogin()">
-                    <i class="fa fa-google"></i>Sign in with Google</button>
-            </div>
-            <div class="or-seperator">
-                <i>or</i>
-            </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon">
                         <i class="fa fa-user"></i>
                     </span>
-                    <input type="email" formControlName="email" class="form-control" placeholder="Email" required="required">
+                    <input type="email" formControlName="email" class="form-control" placeholder="Email"
+                        required="required">
                 </div>
             </div>
             <div class="form-group">
@@ -24,12 +27,15 @@
                     <span class="input-group-addon">
                         <i class="fa fa-lock"></i>
                     </span>
-                    <input type="password" class="form-control" formControlName="password" placeholder="Password" required="required">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                        required="required">
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block btn-login" (click)="regularLogin(loginForm.value)">Login</button>
-                <button type="submit" class="btn btn-info btn-block btn-register" (click)="register(loginForm.value)">Register</button>
+                <button type="submit" class="btn btn-success btn-block btn-login"
+                    (click)="regularLogin(loginForm.value)">Login</button>
+                <button type="submit" class="btn btn-info btn-block btn-register"
+                    (click)="register(loginForm.value)">Register</button>
             </div>
         </div>
         <p *ngIf="errorMessage" class="alert alert-danger"> {{errorMessage}}</p>

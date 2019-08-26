@@ -14,5 +14,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() { }
 
+  get isLoggedIn() {
+    return this.authGuard.subscribeToLoginStatus()
+  }
+
 }
-// [hidden]="!(loadingService.isLoading | async)"
