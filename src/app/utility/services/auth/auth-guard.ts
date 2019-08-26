@@ -1,28 +1,48 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
-export class CanActivateViaAuthGuard implements CanActivate {
-    user: firebase.User;
+export class AuthGuardService {
+    private user: firebase.User;
+    private logIn = new BehaviorSubject({
+        isLoggedIn: false
+    });
 
-    constructor(private afAuth: AngularFireAuth, private router: Router) {
+    constructor(private afAuth: AngularFireAuth) {
+        console.log('constructor for authguard')
         this.afAuth.user.subscribe(
             user => {
-                console.log(this.user);
+                console.log("auth-guard: " + user)
                 this.user = user;
+                if (this.user) {
+                    this.logIn.next({ isLoggedIn: true });
+                } else {
+                    this.logIn.next({ isLoggedIn: false });
+                }
             },
             err => console.log
         );
     }
 
-    canActivate() {
-        if (this.user) {
-            return true;
+    isLoggedIn() {
+        return this.user != null
+    }
+
+    getUserUID() {
+        if (this.isLoggedIn()) {
+            console.log(this.user)
+            return this.user.uid
+        } else {
+            console.error('user not logged in')
+            return null
         }
-        this.router.navigate(['/login']);
-        return false;
+    }
+
+    subscribeToLoginStatus() {
+        return this.logIn.pipe(map(c => c.isLoggedIn))
     }
 }

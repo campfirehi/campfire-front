@@ -6,6 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { DbTopic } from 'src/app/utility/services/topics/db-topic';
 import { LoadingConfigService } from 'src/app/utility/services/loading/loading-config.service';
+import { AuthGuardService } from 'src/app/utility/services/auth/auth-guard';
 
 @Component({
   selector: 'app-join-topic',
@@ -16,16 +17,15 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
 
   private state$: Subscription;
   private routeId$: Subscription;
-  private user$: Subscription
 
   topic: DbTopic;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private afAuth: AngularFireAuth,
     private topicService: TopicService,
-    private loadingService: LoadingConfigService
+    private loadingService: LoadingConfigService,
+    private authGuardService: AuthGuardService
   ) { }
 
   ngOnInit() {
@@ -53,24 +53,21 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
   }
 
   joinTopic() {
-    this.user$ = this.afAuth.user.subscribe(
-      user => {
-        if (user) {
-          this.loadingService.setLoading(true);
-          this.topicService.joinTopic(user, this.topic).subscribe(() => {
-            this.loadingService.setLoading(false);
-            this.router.navigate(['dashboard'])
-          })
-
-        } else {
-          this.router.navigateByUrl('login', {
-            state: {
-              'return': ['explore', this.topic.id]
-            }
-          })
+    if (this.authGuardService.isLoggedIn()) {
+      this.loadingService.setLoading(true);
+      this.topicService.joinTopic(this.topic).subscribe(() => {
+        this.loadingService.setLoading(false);
+        this.router.navigate(['dashboard'])
+      },
+      error => console.log(error))
+    }
+    else {
+      this.router.navigateByUrl('login', {
+        state: {
+          'return': ['explore', this.topic.id]
         }
-      }
-    )
+      })
+    }
   }
 
 
@@ -78,9 +75,6 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
     this.state$.unsubscribe()
     if (this.routeId$) {
       this.routeId$.unsubscribe()
-    }
-    if (this.user$) {
-      this.user$.unsubscribe()
     }
   }
 }

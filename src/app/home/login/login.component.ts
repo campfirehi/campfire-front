@@ -54,42 +54,34 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   regularLogin(formValue) {
-    this.handleLogin(formValue, this.authService.doLogin)
+    this.loadingService.setLoading(true)
+    this.authService.doLogin(formValue).then(res => {
+      this.successLogin(res);
+    }, err => {
+      this.errorLogin(err);
+    })
   }
 
   googleLogin() {
-    this.handleLogin(null, this.authService.doGoogleLogin)
-  }
-
-  handleLogin(formValue, handler) {
     this.loadingService.setLoading(true)
-    if (formValue != null) {
-
-      handler(formValue).then(res => {
-        this.successLogin(res);
-      }, err => {
-        this.errorLogin(err);
-      })
-
-    } else {
-
-      handler().then(res => {
-        this.successLogin(res);
-      }, err => {
-        this.errorLogin(err);
-      })
-    }
+    this.authService.doGoogleLogin().then(res => {
+      this.successLogin(res);
+    }, err => {
+      this.errorLogin(err);
+    })
   }
+
 
   successLogin(res) {
     this.errorMessage = "";
     this.loadingService.setLoading(false)
-
+    console.log("succes login, going to " + this.nextPage)
     this.router.navigate(this.nextPage)
   }
 
   errorLogin(err) {
     console.log(err);
+    console.log('error longin')
     if (err.code === "auth/user-not-found") {
       this.errorMessage = "User not found with the given email and password combination"
     } else {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuardService } from '../../services/auth/auth-guard';
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authGuard: AuthGuardService
+  ) { }
 
   ngOnInit() { }
 
 }
+// [hidden]="!(loadingService.isLoading | async)"

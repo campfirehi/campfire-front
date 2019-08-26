@@ -11,11 +11,14 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore
-  ) { }
+  ) { 
+    this.doFacebookLogin = this.doFacebookLogin.bind(this)
+    // this.doGoogleLogin = this.doGoogleLogin.bind(this)
+  }
 
   doFacebookLogin() {
     return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.FacebookAuthProvider();
+      const provider = new firebase.auth.FacebookAuthProvider();
       this.afAuth.auth
         .signInWithPopup(provider)
         .then(res => {
@@ -29,7 +32,7 @@ export class AuthService {
 
   doTwitterLogin() {
     return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.TwitterAuthProvider();
+      const provider = new firebase.auth.TwitterAuthProvider();
       this.afAuth.auth
         .signInWithPopup(provider)
         .then(res => {
@@ -43,7 +46,7 @@ export class AuthService {
 
   doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.GoogleAuthProvider();
+      const provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
       this.afAuth.auth
@@ -73,7 +76,7 @@ export class AuthService {
 
   doLogin(value) {
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+      this.afAuth.auth.signInWithEmailAndPassword(value.email, value.password)
         .then(res => {
           resolve(res);
         }, err => reject(err))

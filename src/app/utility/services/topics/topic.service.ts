@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentReference, AngularFirestoreDocument, fromDocRef } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference, fromDocRef } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { map, every, mergeMap, flatMap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { DbTopic } from './db-topic';
-import { Observable, from, forkJoin, of, merge } from 'rxjs';
+import { Observable, from, merge } from 'rxjs';
+import { AuthGuardService } from '../auth/auth-guard';
 
 @Injectable({
   providedIn: 'root'
@@ -11,35 +12,41 @@ import { Observable, from, forkJoin, of, merge } from 'rxjs';
 export class TopicService {
 
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private authGuard: AuthGuardService
   ) { }
 
-  joinTopic(user, topic: DbTopic) {
-    const uid = user.uid
-    const userDoc = this.afs.collection('users').doc(uid)
-    const topicRef: DocumentReference = this.afs.collection('topics').doc(topic.id).ref
-    return from(
-      userDoc.update({
-        topics: firebase.firestore.FieldValue.arrayUnion(topicRef)
-      })
-        .then(() => {
-          topicRef.update({
-            members: firebase.firestore.FieldValue.arrayUnion(userDoc.ref)
-          })
-            .then(() => {
-              console.log("Document successfully updated!");
+  joinTopic(topic: DbTopic) {
+    const uid = this.authGuard.getUserUID()
+    if (uid) {
+      console.log(uid)
+      const userDoc = this.afs.collection('users').doc(uid)
+      const topicRef: DocumentReference = this.afs.collection('topics').doc(topic.id).ref
+      return from(
+        userDoc.update({
+          topics: firebase.firestore.FieldValue.arrayUnion(topicRef)
+        })
+          .then(() => {
+            topicRef.update({
+              members: firebase.firestore.FieldValue.arrayUnion(userDoc.ref)
             })
-            .catch((error) => {
-              // The document probably doesn't exist.
-              console.error("Error updating document: ", error);
-            })
+              .then(() => {
+                console.log("Document successfully updated!");
+              })
+              .catch((error) => {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+              })
 
-        })
-        .catch((error) => {
-          // The document probably doesn't exist.
-          console.error("Error updating document: ", error);
-        })
-    )
+          })
+          .catch((error) => {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+          })
+      )
+    } else {
+      return null
+    }
 
   }
 
@@ -56,14 +63,18 @@ export class TopicService {
     }))
   }
 
-  getTopicsByUser(user) {
-    const userUid = user.uid
-    return this.afs.collection('users').doc(userUid).get().pipe(map(snapshot => {
-      const topicRefs: Array<DocumentReference> = snapshot.data().topics
-      return topicRefs.map(ref => fromDocRef(ref))
-    })).pipe(
-      mergeMap(obs => obs.map(newObs => newObs.pipe(map(snashot => snashot.payload.data())))))
-      .pipe(mergeMap(response => merge(response)))
+  getTopicsByUser() {
+    const userUid = this.authGuard.getUserUID()
+    if (userUid) {
+      return this.afs.collection('users').doc(userUid).get().pipe(map(snapshot => {
+        const topicRefs: Array<DocumentReference> = snapshot.data().topics
+        return topicRefs.map(ref => fromDocRef(ref))
+      })).pipe(
+        mergeMap(obs => obs.map(newObs => newObs.pipe(map(snashot => snashot.payload.data())))))
+        .pipe(mergeMap(response => merge(response)))
+    } else {
+      return null
+    }
 
     /*
       given an array of observables

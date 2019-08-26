@@ -7,6 +7,7 @@ import { JoinTopicComponent } from './wordcloud/join-topic/join-topic.component'
 import { HomeRoutingModule } from './routing/home-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LandingComponent } from './landing/landing.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -17,7 +18,8 @@ import { LandingComponent } from './landing/landing.component';
     LoginComponent,
     WordcloudComponent,
     JoinTopicComponent,
-    LandingComponent
+    LandingComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
