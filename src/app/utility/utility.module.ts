@@ -12,31 +12,43 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { TopicService } from './services/topics/topic.service';
 import { LoadingConfigService } from './services/loading/loading-config.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PageNotFoundComponent } from './components/footer/page-not-found/page-not-found.component';
+import { RouterModule } from '@angular/router';
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 
 
 
 @NgModule({
   declarations: [
+    NavbarComponent,
+    FooterComponent,
     LoadingComponent,
-    FillPipe
+    PageNotFoundComponent,
+    FillPipe,
+    MainLayoutComponent
   ],
   imports: [
     CommonModule,
+    RouterModule.forChild([]),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence()
   ],
   exports: [
     LoadingComponent,
-    FillPipe
-  ],
-  providers: []
+    FillPipe,
+    NavbarComponent,
+    FooterComponent,
+    PageNotFoundComponent,
+    MainLayoutComponent
+  ]
 })
 export class UtilityModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: UtilityModule,
-      providers: [ScriptLoadingService, CanActivateViaAuthGuard, DummyAuthGuard, AuthService, TopicService, LoadingConfigService]
+      ngModule: UtilityModule
     };
   }
 }

@@ -3,6 +3,7 @@ import { DtTrackService } from './dt-track.service';
 import { DetailedTopic, Stage } from '../../utility/services/topics/detailed-topic';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscribable, Subscription } from 'rxjs';
+import { LoadingConfigService } from 'src/app/utility/services/loading/loading-config.service';
 
 @Component({
   selector: 'app-dt-track',
@@ -17,16 +18,22 @@ export class DtTrackComponent implements OnInit, OnDestroy {
   private routeSubscriber: Subscription;
   private topicId: string
 
-  constructor(private dtService: DtTrackService,
-    private route: ActivatedRoute) { }
+  constructor(
+    private dtService: DtTrackService,
+    private route: ActivatedRoute,
+    private loadingService: LoadingConfigService
+  ) { }
 
   ngOnInit() {
+    this.loadingService.setLoading(true);
     this.routeSubscriber = this.route.params.subscribe(
       params => {
         this.topicId = params['id'];
         this.dtService.getDetailedTopic(this.topicId).subscribe((received) => {
           this.detailedTopic = received
           this.stage = this.detailedTopic.current_stage;
+
+          this.loadingService.setLoading(false)
         })
       }
     );

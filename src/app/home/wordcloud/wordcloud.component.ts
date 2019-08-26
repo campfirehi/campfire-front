@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
-import { TopicService } from '../utility/services/topics/topic.service';
-import { DbTopic } from '../utility/services/topics/db-topic';
-import { LoadingConfigService } from '../utility/services/loading/loading-config.service';
+import { TopicService } from '../../utility/services/topics/topic.service';
+import { DbTopic } from '../../utility/services/topics/db-topic';
+import { LoadingConfigService } from '../../utility/services/loading/loading-config.service';
 
 declare var TagCanvas: any
 

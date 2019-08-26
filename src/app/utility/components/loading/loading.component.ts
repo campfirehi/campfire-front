@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LoadingConfigService } from '../../services/loading/loading-config.service';
 
 @Component({
@@ -6,15 +6,12 @@ import { LoadingConfigService } from '../../services/loading/loading-config.serv
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']
 })
-export class LoadingComponent implements OnInit, OnChanges {
+export class LoadingComponent implements OnInit {
 
   @Input("screenHeight") screenHeight;
 
   constructor(private loadingService: LoadingConfigService) { }
 
   ngOnInit() {
-  }
-  ngOnChanges(cnanges) {
-    console.log(cnanges)
   }
 }

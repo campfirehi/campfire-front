@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="content-wrapper">
+    <div #navbar style="display: block">
+        <app-navbar></app-navbar>
+    </div>
+
+
+    <div style="display: block;" [style.min-height.px]="minHeight">
+        <app-loading [screenHeight]="screenHeight"></app-loading>
+        <router-outlet></router-outlet>
+    </div>
+
+
+    <div #footer style="display: block">
+        <app-footer #footer></app-footer>
+    </div>
+</div>

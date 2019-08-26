@@ -5,6 +5,7 @@ import { TopicService } from 'src/app/utility/services/topics/topic.service';
 import { filter, map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { DbTopic } from 'src/app/utility/services/topics/db-topic';
+import { LoadingConfigService } from 'src/app/utility/services/loading/loading-config.service';
 
 @Component({
   selector: 'app-join-topic',
@@ -23,10 +24,12 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private afAuth: AngularFireAuth,
-    private topicService: TopicService
+    private topicService: TopicService,
+    private loadingService: LoadingConfigService
   ) { }
 
   ngOnInit() {
+    this.loadingService.setLoading(true);
     this.state = this.route.paramMap
       .pipe(map(() => window.history.state)).subscribe(topic => {
         if (Object.keys(topic).length == 1) {
@@ -34,11 +37,15 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
             params => {
               const topicId = params['topic'];
               this.topicService.getTopicById(topicId).subscribe(
-                topic => this.topic = topic
+                topic => {
+                  this.topic = topic
+                  this.loadingService.setLoading(false);
+                }
               )
             }
           );
         } else {
+          this.loadingService.setLoading(false);
           this.topic = topic
         }
       })
@@ -49,10 +56,12 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
     this.afAuth.user.subscribe(
       user => {
         if (user) {
+          this.loadingService.setLoading(true);
           this.topicService.joinTopic(user, this.topic).subscribe(() => {
+            this.loadingService.setLoading(false);
             this.router.navigate(['dashboard'])
           })
-          
+
         } else {
 
           console.log('not logged in')

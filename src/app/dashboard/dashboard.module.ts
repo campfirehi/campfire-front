@@ -31,6 +31,9 @@ import { UtilityModule } from '../utility/utility.module';
     DashboardRoutingModule,
     UtilityModule.forRoot()
   ],
-  providers: []
+  providers: [],
+  exports: [
+    LayoutComponent
+  ]
 })
 export class DashboardModule { }

@@ -11,13 +11,16 @@ export class LoadingConfigService {
       isLoading: false
     });
 
-    constructor() {}
+    constructor() {
+      console.log('loading service initialized')
+    }
 
     get isLoading() {
         return this.config.pipe(map(c => c.isLoading))
     }
 
     public setLoading(loading: boolean) {
+      console.log("setting loading to " + loading)
         this.config.next({isLoading: loading});
     }
 }
