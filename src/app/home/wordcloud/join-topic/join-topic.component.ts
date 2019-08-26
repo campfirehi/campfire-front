@@ -14,11 +14,11 @@ import { LoadingConfigService } from 'src/app/utility/services/loading/loading-c
 })
 export class JoinTopicComponent implements OnInit, OnDestroy {
 
-  private state: Subscription;
-  private routeId: Subscription;
+  private state$: Subscription;
+  private routeId$: Subscription;
+  private user$: Subscription
 
   topic: DbTopic;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -30,10 +30,10 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadingService.setLoading(true);
-    this.state = this.route.paramMap
+    this.state$ = this.route.paramMap
       .pipe(map(() => window.history.state)).subscribe(topic => {
         if (Object.keys(topic).length == 1) {
-          this.routeId = this.route.params.subscribe(
+          this.routeId$ = this.route.params.subscribe(
             params => {
               const topicId = params['topic'];
               this.topicService.getTopicById(topicId).subscribe(
@@ -53,7 +53,7 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
   }
 
   joinTopic() {
-    this.afAuth.user.subscribe(
+    this.user$ = this.afAuth.user.subscribe(
       user => {
         if (user) {
           this.loadingService.setLoading(true);
@@ -63,8 +63,11 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
           })
 
         } else {
-
-          console.log('not logged in')
+          this.router.navigateByUrl('login', {
+            state: {
+              'return': ['explore', this.topic.id]
+            }
+          })
         }
       }
     )
@@ -72,9 +75,12 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.state.unsubscribe()
-    if (this.routeId) {
-      this.routeId.unsubscribe()
+    this.state$.unsubscribe()
+    if (this.routeId$) {
+      this.routeId$.unsubscribe()
+    }
+    if (this.user$) {
+      this.user$.unsubscribe()
     }
   }
 }

@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../utility/services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingConfigService } from '../../utility/services/loading/loading-config.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   errorMessage: string = '';
 
+  private returnRoute$;
+  private nextPage;
+
   constructor(
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
@@ -23,6 +28,11 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
   ngOnInit() {
+    this.returnRoute$ = this.getNextPage().subscribe(dest => this.nextPage = dest)
+  }
+
+  ngOnDestroy() {
+    this.returnRoute$.unsubscribe();
   }
 
   createForm() {
@@ -54,7 +64,7 @@ export class LoginComponent implements OnInit {
   handleLogin(formValue, handler) {
     this.loadingService.setLoading(true)
     if (formValue != null) {
-      
+
       handler(formValue).then(res => {
         this.successLogin(res);
       }, err => {
@@ -74,7 +84,8 @@ export class LoginComponent implements OnInit {
   successLogin(res) {
     this.errorMessage = "";
     this.loadingService.setLoading(false)
-    this.router.navigate(['/dashboard', 'profile'])
+
+    this.router.navigate(this.nextPage)
   }
 
   errorLogin(err) {
@@ -87,5 +98,18 @@ export class LoginComponent implements OnInit {
     this.loadingService.setLoading(false)
 
   }
+
+  getNextPage() {
+    return this.route.paramMap
+      .pipe(map(() => {
+        const returnRoute = window.history.state
+        if (Object.keys(returnRoute).length == 1) {
+          return ['dashboard', 'profile']
+        } else {
+          return returnRoute['return']
+        }
+      }))
+  }
+
 }
 

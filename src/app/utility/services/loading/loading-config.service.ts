@@ -7,20 +7,18 @@ import { map } from 'rxjs/operators';
 })
 @Injectable()
 export class LoadingConfigService {
-    private config = new BehaviorSubject({
-      isLoading: false
-    });
+  private config = new BehaviorSubject({
+    isLoading: false
+  });
 
-    constructor() {
-      console.log('loading service initialized')
-    }
+  constructor() {
+  }
 
-    get isLoading() {
-        return this.config.pipe(map(c => c.isLoading))
-    }
+  get isLoading() {
+    return this.config.pipe(map(c => c.isLoading))
+  }
 
-    public setLoading(loading: boolean) {
-      console.log("setting loading to " + loading)
-        this.config.next({isLoading: loading});
-    }
+  public setLoading(loading: boolean) {
+    this.config.next({ isLoading: loading });
+  }
 }
