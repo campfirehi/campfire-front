@@ -21,11 +21,11 @@ export class DtStepsComponent implements OnInit {
   }
 
   getStep(index: number): Step {
-    if (this.stage.level - 1 == index) {
+    if (this.stage.level == index) {
       return Step.Current;
-    } else if (this.best_level - 1 >= index) {
+    } else if (this.best_level  >= index) {
       return Step.Past;
-    } else if (this.best_level - 1 < index) {
+    } else if (this.best_level  < index) {
       return Step.Future;
     } 
   }

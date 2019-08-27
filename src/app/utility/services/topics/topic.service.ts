@@ -3,7 +3,7 @@ import { AngularFirestore, DocumentReference, fromDocRef } from '@angular/fire/f
 import * as firebase from 'firebase/app';
 import { map, mergeMap } from 'rxjs/operators';
 import { DbTopic } from './db-topic';
-import { Observable, from, merge } from 'rxjs';
+import { Observable, from, merge, empty } from 'rxjs';
 import { AuthGuardService } from '../auth/auth-guard';
 
 @Injectable({
@@ -63,17 +63,18 @@ export class TopicService {
     }))
   }
 
-  getTopicsByUser() {
+  getTopicsByUser(): Observable<any> {
     const userUid = this.authGuard.getUserUID()
     if (userUid) {
       return this.afs.collection('users').doc(userUid).get().pipe(map(snapshot => {
         const topicRefs: Array<DocumentReference> = snapshot.data().topics
         return topicRefs.map(ref => fromDocRef(ref))
       })).pipe(
-        mergeMap(obs => obs.map(newObs => newObs.pipe(map(snashot => snashot.payload.data())))))
+        mergeMap(obs => obs.map(newObs => newObs.pipe(map(snashot =>
+          TopicService.toDbTopic(snashot.payload.id, snashot.payload.data()))))))
         .pipe(mergeMap(response => merge(response)))
     } else {
-      return null
+      return empty().pipe(map(_ => []))
     }
 
     /*
@@ -93,8 +94,6 @@ export class TopicService {
     }))
   }
 
-
-
   private static toDbTopic(id, topic): DbTopic {
     return {
       id: id,
@@ -104,5 +103,9 @@ export class TopicService {
         members: topic.members
       },
     }
+  }
+
+  static convertStageIndexToName(index) {
+    return "Stage " + index
   }
 }

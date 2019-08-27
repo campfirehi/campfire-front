@@ -13,6 +13,6 @@ export interface DbTopic {
     data: {
         topic: string;
         iterations: Array<DbIteration>;
-        members: Array<DocumentReference>
+        members: Array<any>
     }
 }
