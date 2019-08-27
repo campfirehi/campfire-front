@@ -41,10 +41,7 @@ export class DtTrackComponent implements OnInit, OnDestroy {
           this.stage = this.detailedTopic.current_stage
         }
       })
-
-
   }
-
 
   onStageSelected(index: number) {
     this.stage = this.getStage(this.dbTopic, index)

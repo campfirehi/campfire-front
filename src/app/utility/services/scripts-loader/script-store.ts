@@ -4,5 +4,6 @@ interface Scripts {
 }  
 export const ScriptStore: Scripts[] = [
     {name: 'whiteboard', src: 'https://awwapp.com/static/widget/js/aww3.min.js'},
-    {name: 'wordcloud', src: '../../../assets/js/ion.rangeSlider.min.js'}
+    {name: 'whiteboard_toolbar', src: 'https://awwapp.com/static/widget/sample_toolbar.js'},
+    // {name: 'wordcloud', src: '../../../assets/js/ion.rangeSlider.min.js'}
 ];
