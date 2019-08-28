@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LoadingConfigService } from '../../services/loading/loading-config.service';
+import { LoadingStateService } from '../../services/loading/loading-state.service';
 
 @Component({
   selector: 'app-loading',
@@ -10,7 +10,7 @@ export class LoadingComponent implements OnInit {
 
   @Input("screenHeight") screenHeight;
 
-  constructor(private loadingService: LoadingConfigService) { }
+  constructor(private loadingService: LoadingStateService) { }
 
   ngOnInit() {
   }

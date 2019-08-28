@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Topic from '../../utility/services/topics/topic';
 import { TopicService } from '../../utility/services/topics/topic.service';
 import { DbTopic } from '../../utility/services/topics/db-topic';
-import { LoadingConfigService } from '../../utility/services/loading/loading-config.service';
+import { LoadingStateService } from '../../utility/services/loading/loading-state.service';
 
 @Component({
   selector: 'app-topics-list',
@@ -15,7 +15,7 @@ export class TopicsListComponent implements OnInit {
 
   constructor(
     private topicService: TopicService,
-    private loadingService: LoadingConfigService
+    private loadingService: LoadingStateService
   ) { }
 
   ngOnInit() {

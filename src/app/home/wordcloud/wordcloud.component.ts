@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { TopicService } from '../../utility/services/topics/topic.service';
 import { DbTopic } from '../../utility/services/topics/db-topic';
-import { LoadingConfigService } from '../../utility/services/loading/loading-config.service';
+import { LoadingStateService } from '../../utility/services/loading/loading-state.service';
 
 declare var TagCanvas: any
 
@@ -20,7 +20,7 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
   constructor(
     private router: Router,
     private topicService: TopicService,
-    private loadingService: LoadingConfigService
+    private loadingService: LoadingStateService
   ) { }
 
   ngOnInit() {

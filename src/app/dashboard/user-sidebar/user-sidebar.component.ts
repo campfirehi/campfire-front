@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScreenDimensionService } from '../../utility/services/screen-dimension/screen-dimension.service';
 
 @Component({
   selector: 'app-user-sidebar',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSidebarComponent implements OnInit {
 
-  constructor() { }
+  minHeight: number
+
+  constructor(
+    private screenDimService: ScreenDimensionService
+  ) { }
 
   ngOnInit() {
+    this.screenDimService.minHeight.subscribe(height => {
+      this.minHeight = Math.max(height, this.minHeight)
+    })
+
+    this.screenDimService.contentHeight.subscribe(height => {
+      this.minHeight = Math.max(height, this.minHeight)
+    })
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DetailedTopic, Stage } from '../../utility/services/topics/detailed-topic';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LoadingConfigService } from 'src/app/utility/services/loading/loading-config.service';
+import { LoadingStateService } from '../../utility/services/loading/loading-state.service';
 import { map } from 'rxjs/operators';
 import { TopicService } from '../../utility/services/topics/topic.service';
 import { DbTopic } from '../../utility/services/topics/db-topic';
@@ -24,7 +24,7 @@ export class DtTrackComponent implements OnInit, OnDestroy {
   constructor(
     private topicService: TopicService,
     private route: ActivatedRoute,
-    private loadingService: LoadingConfigService
+    private loadingService: LoadingStateService
   ) { }
 
   ngOnInit() {

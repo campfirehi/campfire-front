@@ -6,8 +6,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 @Injectable()
-export class LoadingConfigService {
-  private config = new BehaviorSubject({
+export class LoadingStateService {
+  private state = new BehaviorSubject({
     isLoading: false
   });
 
@@ -15,10 +15,10 @@ export class LoadingConfigService {
   }
 
   get isLoading() {
-    return this.config.pipe(map(c => c.isLoading))
+    return this.state.pipe(map(c => c.isLoading))
   }
 
   public setLoading(loading: boolean) {
-    this.config.next({ isLoading: loading });
+    this.state.next({ isLoading: loading });
   }
 }

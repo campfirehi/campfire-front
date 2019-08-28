@@ -26,7 +26,6 @@ export class WhiteboardComponent implements OnInit, OnDestroy {
         showUserPointers: true
       });
 
-      console.log(aww)
       window['aww'] = aww
 
       $.ajax({

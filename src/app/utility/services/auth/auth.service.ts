@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +52,6 @@ export class AuthService {
         .then(res => {
           if (res.additionalUserInfo.isNewUser) {
             this.saveUserToDb(res.user.email, res.user.uid).then(() => {
-              console.log('pau saving ' + res.user.email)
               resolve(res)
             })
           } else {

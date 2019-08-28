@@ -13,10 +13,8 @@ export class AuthGuardService {
     });
 
     constructor(private afAuth: AngularFireAuth) {
-        console.log('constructor for authguard')
         this.afAuth.user.subscribe(
             user => {
-                console.log("auth-guard: " + user)
                 this.user = user;
                 if (this.user) {
                     this.logIn.next({ isLoggedIn: true });
@@ -34,7 +32,6 @@ export class AuthGuardService {
 
     getUserUID() {
         if (this.isLoggedIn()) {
-            console.log(this.user)
             return this.user.uid
         } else {
             console.error('user not logged in')

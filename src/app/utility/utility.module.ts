@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './components/loading/loading.component';
 import { FillPipe } from './pipes/fill.pipe';
 import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NavbarComponent } from './components/navbar/navbar.component';

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../utility/services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoadingConfigService } from '../../utility/services/loading/loading-config.service';
+import { LoadingStateService } from '../../utility/services/loading/loading-state.service';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private loadingService: LoadingConfigService
+    private loadingService: LoadingStateService
   ) {
     this.createForm();
   }
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loadingService.setLoading(true)
     this.authService.doRegister(formValue)
       .then(res => {
-        console.log(res);
         this.regularLogin(formValue);
       }, err => {
         this.errorLogin(err);
@@ -81,7 +80,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   errorLogin(err) {
     console.log(err);
-    console.log('error longin')
     if (err.code === "auth/user-not-found") {
       this.errorMessage = "User not found with the given email and password combination"
     } else {

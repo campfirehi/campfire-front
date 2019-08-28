@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { TopicService } from 'src/app/utility/services/topics/topic.service';
+import { TopicService } from '../../../utility/services/topics/topic.service';
 import { filter, map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
-import { DbTopic } from 'src/app/utility/services/topics/db-topic';
-import { LoadingConfigService } from 'src/app/utility/services/loading/loading-config.service';
-import { AuthGuardService } from 'src/app/utility/services/auth/auth-guard';
+import { DbTopic } from '../../../utility/services/topics/db-topic';
+import { LoadingStateService } from '../../../utility/services/loading/loading-state.service';
+import { AuthGuardService } from '../../../utility/services/auth/auth-guard';
 
 @Component({
   selector: 'app-join-topic',
@@ -24,7 +24,7 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private topicService: TopicService,
-    private loadingService: LoadingConfigService,
+    private loadingService: LoadingStateService,
     private authGuardService: AuthGuardService
   ) { }
 

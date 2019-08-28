@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterViewChecked } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { ScreenDimensionService } from '../../services/screen-dimension/screen-dimension.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -10,32 +10,29 @@ export class MainLayoutComponent implements OnInit, AfterViewChecked {
 
   minHeight = 100;
   screenHeight = 100;
-  private minHeightAdjusted = false;
 
   @ViewChild('navbar', { read: ElementRef, static: false }) navbar;
   @ViewChild('footer', { read: ElementRef, static: false }) footer;
 
-  constructor(private router: Router) { }
+  constructor(
+    private screenDimService: ScreenDimensionService
+  ) { }
 
   ngOnInit() {
-    this.router.events.subscribe((routeEvent) => {
-      if (routeEvent instanceof NavigationEnd) {
-        const contentHeight = this.getContentHeight()
-        this.screenHeight = contentHeight
-      }
-    });
   }
-
-
+  
   ngAfterViewChecked() {
-    if (!this.minHeightAdjusted) {
+    if (this.minHeight != this.getMinContentHeight()) {
       setTimeout(() => {
         this.minHeight = this.getMinContentHeight()
-        this.minHeightAdjusted = true;
+        this.screenDimService.setMinHeight(this.minHeight)
+      }, 0)
+    }
 
-        if (this.screenHeight < this.minHeight) {
-          this.screenHeight = this.minHeight
-        }
+    if (this.screenHeight != this.getContentHeight()) {
+      setTimeout(() => {
+        this.screenHeight = this.getContentHeight()
+        this.screenDimService.setContentHeight(this.screenHeight)
       }, 0)
     }
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference, fromDocRef } from '@angular/fire/firestore';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { map, mergeMap } from 'rxjs/operators';
 import { DbTopic } from './db-topic';
 import { Observable, from, merge, empty } from 'rxjs';
@@ -19,7 +19,6 @@ export class TopicService {
   joinTopic(topic: DbTopic) {
     const uid = this.authGuard.getUserUID()
     if (uid) {
-      console.log(uid)
       const userDoc = this.afs.collection('users').doc(uid)
       const topicRef: DocumentReference = this.afs.collection('topics').doc(topic.id).ref
       return from(
