@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScriptLoadingService } from '../../../utility/services/scripts-loader/script-loading.service';
+import { LoadingStateService } from '../../../utility/services/loading/loading-state.service';
 
 declare var AwwBoard: any
 declare var $: any
@@ -13,7 +14,8 @@ declare var initToolbar: any
 export class WhiteboardComponent implements OnInit, OnDestroy {
 
   constructor(
-    private scriptLoader: ScriptLoadingService
+    private scriptLoader: ScriptLoadingService,
+    private loadingService: LoadingStateService
   ) {
   }
 
@@ -39,6 +41,7 @@ export class WhiteboardComponent implements OnInit, OnDestroy {
 
         this.scriptLoader.load('whiteboard_toolbar').then(data => {
           initToolbar();
+          this.loadingService.setLoading(false);
         })
       });
 

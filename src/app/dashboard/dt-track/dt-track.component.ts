@@ -35,7 +35,6 @@ export class DtTrackComponent implements OnInit, OnDestroy {
         if (Object.keys(topic).length == 1) {
           this.fetchTopicFromDb()
         } else {
-          this.loadingService.setLoading(false);
           this.detailedTopic = this.toDetailedTopic(topic)
           this.dbTopic = topic
           this.stage = this.detailedTopic.current_stage
@@ -84,7 +83,6 @@ export class DtTrackComponent implements OnInit, OnDestroy {
         this.topicService.getTopicById(topicId).subscribe(
           topic => {
             this.detailedTopic = this.toDetailedTopic(topic)
-            this.loadingService.setLoading(false);
             this.dbTopic = topic;
             this.stage = this.detailedTopic.current_stage
           }

@@ -8,7 +8,7 @@ import { ScreenDimensionService } from '../../utility/services/screen-dimension/
 })
 export class UserSidebarComponent implements OnInit {
 
-  minHeight: number
+  minHeight: number = 0
 
   constructor(
     private screenDimService: ScreenDimensionService

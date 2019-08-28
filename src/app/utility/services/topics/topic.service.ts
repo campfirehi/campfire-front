@@ -104,7 +104,7 @@ export class TopicService {
     }
   }
 
-  static convertStageIndexToName(index) {
-    return "Stage " + index
+  static convertStageIndexToName(index: number) {
+    return ['Empathize', 'Define', 'Ideate', 'Prototype', 'Test'][index]
   }
 }
