@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"dashboard-dashboard-module":"dashboard-dashboard-module","home-home-module":"home-home-module"}[chunkId]||chunkId) + "-es2015.js"
+/******/ 		return __webpack_require__.p + "" + ({"default~dashboard-dashboard-module~home-home-module":"default~dashboard-dashboard-module~home-home-module","dashboard-dashboard-module":"dashboard-dashboard-module","home-home-module":"home-home-module"}[chunkId]||chunkId) + "-es2015.js"
 /******/ 	}
 /******/
 /******/ 	// The require function

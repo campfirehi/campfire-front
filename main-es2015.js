@@ -85,7 +85,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"header\" role=\"banner\">\n    <nav class=\"navbar\">\n        <div class=\"navbar-flex-container\">\n            <h1><a class=\"navbar-logo\" [routerLink]=\"['']\">Campfire</a></h1>\n\n            <div class=\"navbar-toggler\" role=\"button\" data-toggle=\"collapse\" data-target=\"#navbar-nav-collapsible\"\n                aria-controls=\"navbar-nav-collapsible\" aria-expanded=\"false\">\n                <div class=\"burger\"><span></span></div>\n                <span class=\"sr-only\">Toggle Navigation</span>\n            </div>\n        </div>\n\n        <div id=\"navbar-nav-collapsible\" class=\"collapse navbar-collapse\">\n            <ul class=\"navbar-nav\">\n                <li class=\"nav-item\"><a class=\"nav-link\" [routerLink]=\"['dashboard']\"><span>Dashboard</span></a></li>\n                <li class=\"nav-item\"><a class=\"nav-link\" [routerLink]=\"['explore']\"><span>Explore</span></a></li>\n                <li class=\"nav-item\"><a class=\"nav-link\" [routerLink]=\"['about']\"><span>About</span></a></li>\n                <li class=\"nav-item\"><a class=\"nav-link\" [routerLink]=\"['services']\"><span>Services</span></a></li>\n\n\n                <li *ngIf=\"!(isLoggedIn | async)\" class=\"nav-item\"><a class=\"nav-link\"\n                        [routerLink]=\"['login']\"><span>Log In</span></a></li>\n                <li *ngIf=\"(isLoggedIn | async)\" class=\"nav-item\"><a class=\"nav-link\"\n                        [routerLink]=\"['logout']\"><span>Log Out</span></a></li>\n            </ul>\n        </div>\n    </nav>\n</header>"
+module.exports = "<header class=\"header\" role=\"banner\">\n    <nav class=\"navbar\">\n        <div class=\"navbar-flex-container\">\n            <h1>\n                <a class=\"navbar-logo\" [routerLink]=\"['']\">Campfire</a>\n            </h1>\n\n            <div class=\"navbar-toggler\" role=\"button\" data-toggle=\"collapse\" data-target=\"#navbar-nav-collapsible\" aria-controls=\"navbar-nav-collapsible\"\n                aria-expanded=\"false\">\n                <div class=\"burger\">\n                    <span></span>\n                </div>\n                <span class=\"sr-only\">Toggle Navigation</span>\n            </div>\n        </div>\n\n        <div id=\"navbar-nav-collapsible\" class=\"collapse navbar-collapse\">\n            <ul class=\"navbar-nav\">\n                <li *ngIf=\"(isLoggedIn | async)\" class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['dashboard']\">\n                        <span>Dashboard</span>\n                    </a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['explore']\">\n                        <span>Explore</span>\n                    </a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['about']\">\n                        <span>About</span>\n                    </a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['services']\">\n                        <span>Services</span>\n                    </a>\n                </li>\n\n\n                <li *ngIf=\"!(isLoggedIn | async)\" class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['login']\">\n                        <span>Log In</span>\n                    </a>\n                </li>\n                <li *ngIf=\"(isLoggedIn | async)\" class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['logout']\">\n                        <span>Log Out</span>\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </nav>\n</header>"
 
 /***/ }),
 
@@ -198,11 +198,11 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        loadChildren: () => __webpack_require__.e(/*! import() | home-home-module */ "home-home-module").then(__webpack_require__.bind(null, /*! ../home/home.module */ "./src/app/home/home.module.ts")).then(mod => mod.HomeModule)
+        loadChildren: () => Promise.all(/*! import() | home-home-module */[__webpack_require__.e("default~dashboard-dashboard-module~home-home-module"), __webpack_require__.e("home-home-module")]).then(__webpack_require__.bind(null, /*! ../home/home.module */ "./src/app/home/home.module.ts")).then(mod => mod.HomeModule)
     },
     {
         path: 'dashboard',
-        loadChildren: () => __webpack_require__.e(/*! import() | dashboard-dashboard-module */ "dashboard-dashboard-module").then(__webpack_require__.bind(null, /*! ../dashboard/dashboard.module */ "./src/app/dashboard/dashboard.module.ts")).then(mod => mod.DashboardModule)
+        loadChildren: () => Promise.all(/*! import() | dashboard-dashboard-module */[__webpack_require__.e("default~dashboard-dashboard-module~home-home-module"), __webpack_require__.e("dashboard-dashboard-module")]).then(__webpack_require__.bind(null, /*! ../dashboard/dashboard.module */ "./src/app/dashboard/dashboard.module.ts")).then(mod => mod.DashboardModule)
     },
     { path: '**', component: _utility_components_footer_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_3__["PageNotFoundComponent"] }
 ];
@@ -310,7 +310,7 @@ PageNotFoundComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".overlay {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 99999;\n  opacity: 1;\n  background: rgba(233, 232, 232, 0.582);\n  -webkit-transition: opacity 200ms ease-in-out;\n  transition: opacity 200ms ease-in-out;\n  border-radius: 4px;\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21ja3Vvay9wcm9qZWN0cy9jYW1wZmlyZS1mcm9udC9zcmMvYXBwL3V0aWxpdHkvY29tcG9uZW50cy9sb2FkaW5nL2xvYWRpbmcuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3V0aWxpdHkvY29tcG9uZW50cy9sb2FkaW5nL2xvYWRpbmcuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxvQkFBQTtFQUFBLGFBQUE7RUFDQSx3QkFBQTtVQUFBLHVCQUFBO0VBQ0EseUJBQUE7VUFBQSxtQkFBQTtFQUNBLGtCQUFBO0VBQ0EsY0FBQTtFQUNBLFVBQUE7RUFDQSxzQ0FBQTtFQUNBLDZDQUFBO0VBQUEscUNBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3V0aWxpdHkvY29tcG9uZW50cy9sb2FkaW5nL2xvYWRpbmcuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub3ZlcmxheSB7ICBcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHotaW5kZXg6IDk5OTk5O1xuICAgIG9wYWNpdHk6IDE7XG4gICAgYmFja2dyb3VuZDogcmdiYSgyMzMsIDIzMiwgMjMyLCAwLjU4Mik7XG4gICAgdHJhbnNpdGlvbjogb3BhY2l0eSAyMDBtcyBlYXNlLWluLW91dDtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgd2lkdGg6IDEwMCVcbiAgICAvLyBtaW4td2lkdGg6IDEwMHZ3O1xuIFxuICB9IiwiLm92ZXJsYXkge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB6LWluZGV4OiA5OTk5OTtcbiAgb3BhY2l0eTogMTtcbiAgYmFja2dyb3VuZDogcmdiYSgyMzMsIDIzMiwgMjMyLCAwLjU4Mik7XG4gIHRyYW5zaXRpb246IG9wYWNpdHkgMjAwbXMgZWFzZS1pbi1vdXQ7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgd2lkdGg6IDEwMCU7XG59Il19 */"
+module.exports = ".overlay {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  position: absolute;\n  z-index: 3000;\n  opacity: 1;\n  background: rgba(233, 232, 232, 0.582);\n  -webkit-transition: opacity 200ms ease-in-out;\n  transition: opacity 200ms ease-in-out;\n  border-radius: 4px;\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21ja3Vvay9wcm9qZWN0cy9jYW1wZmlyZS1mcm9udC9zcmMvYXBwL3V0aWxpdHkvY29tcG9uZW50cy9sb2FkaW5nL2xvYWRpbmcuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3V0aWxpdHkvY29tcG9uZW50cy9sb2FkaW5nL2xvYWRpbmcuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxvQkFBQTtFQUFBLGFBQUE7RUFDQSx3QkFBQTtVQUFBLHVCQUFBO0VBQ0EseUJBQUE7VUFBQSxtQkFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLFVBQUE7RUFDQSxzQ0FBQTtFQUNBLDZDQUFBO0VBQUEscUNBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3V0aWxpdHkvY29tcG9uZW50cy9sb2FkaW5nL2xvYWRpbmcuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIub3ZlcmxheSB7ICBcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHotaW5kZXg6IDMwMDA7XG4gICAgb3BhY2l0eTogMTtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDIzMywgMjMyLCAyMzIsIDAuNTgyKTtcbiAgICB0cmFuc2l0aW9uOiBvcGFjaXR5IDIwMG1zIGVhc2UtaW4tb3V0O1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICB3aWR0aDogMTAwJVxuICAgIC8vIG1pbi13aWR0aDogMTAwdnc7XG4gXG4gIH0iLCIub3ZlcmxheSB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHotaW5kZXg6IDMwMDA7XG4gIG9wYWNpdHk6IDE7XG4gIGJhY2tncm91bmQ6IHJnYmEoMjMzLCAyMzIsIDIzMiwgMC41ODIpO1xuICB0cmFuc2l0aW9uOiBvcGFjaXR5IDIwMG1zIGVhc2UtaW4tb3V0O1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIHdpZHRoOiAxMDAlO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -326,7 +326,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingComponent", function() { return LoadingComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _services_loading_loading_config_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/loading/loading-config.service */ "./src/app/utility/services/loading/loading-config.service.ts");
+/* harmony import */ var _services_loading_loading_state_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/loading/loading-state.service */ "./src/app/utility/services/loading/loading-state.service.ts");
 
 
 
@@ -341,7 +341,7 @@ let LoadingComponent = class LoadingComponent {
     }
 };
 LoadingComponent.ctorParameters = () => [
-    { type: _services_loading_loading_config_service__WEBPACK_IMPORTED_MODULE_2__["LoadingConfigService"] }
+    { type: _services_loading_loading_state_service__WEBPACK_IMPORTED_MODULE_2__["LoadingStateService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])("screenHeight")
@@ -381,33 +381,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MainLayoutComponent", function() { return MainLayoutComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _services_screen_dimension_screen_dimension_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/screen-dimension/screen-dimension.service */ "./src/app/utility/services/screen-dimension/screen-dimension.service.ts");
 
 
 
 let MainLayoutComponent = class MainLayoutComponent {
-    constructor(router) {
-        this.router = router;
+    constructor(screenDimService) {
+        this.screenDimService = screenDimService;
         this.minHeight = 100;
         this.screenHeight = 100;
-        this.minHeightAdjusted = false;
+        this.recalculateMinHeight = false;
+        this.recalculateScreenHeight = false;
     }
     ngOnInit() {
-        this.router.events.subscribe((routeEvent) => {
-            if (routeEvent instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"]) {
-                const contentHeight = this.getContentHeight();
-                this.screenHeight = contentHeight;
-            }
-        });
     }
     ngAfterViewChecked() {
-        if (!this.minHeightAdjusted) {
+        if (this.minHeight != this.getMinContentHeight()) {
             setTimeout(() => {
                 this.minHeight = this.getMinContentHeight();
-                this.minHeightAdjusted = true;
-                if (this.screenHeight < this.minHeight) {
-                    this.screenHeight = this.minHeight;
-                }
+                this.screenDimService.setMinHeight(this.minHeight);
+            }, 0);
+        }
+        if (this.screenHeight != this.getContentHeight()) {
+            setTimeout(() => {
+                this.screenHeight = this.getContentHeight();
+                this.screenDimService.setContentHeight(this.screenHeight);
             }, 0);
         }
     }
@@ -426,7 +424,7 @@ let MainLayoutComponent = class MainLayoutComponent {
     }
 };
 MainLayoutComponent.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    { type: _services_screen_dimension_screen_dimension_service__WEBPACK_IMPORTED_MODULE_2__["ScreenDimensionService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('navbar', { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], static: false })
@@ -556,9 +554,7 @@ let AuthGuardService = class AuthGuardService {
         this.logIn = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"]({
             isLoggedIn: false
         });
-        console.log('constructor for authguard');
         this.afAuth.user.subscribe(user => {
-            console.log("auth-guard: " + user);
             this.user = user;
             if (this.user) {
                 this.logIn.next({ isLoggedIn: true });
@@ -573,7 +569,6 @@ let AuthGuardService = class AuthGuardService {
     }
     getUserUID() {
         if (this.isLoggedIn()) {
-            console.log(this.user);
             return this.user.uid;
         }
         else {
@@ -598,16 +593,16 @@ AuthGuardService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/utility/services/loading/loading-config.service.ts":
-/*!********************************************************************!*\
-  !*** ./src/app/utility/services/loading/loading-config.service.ts ***!
-  \********************************************************************/
-/*! exports provided: LoadingConfigService */
+/***/ "./src/app/utility/services/loading/loading-state.service.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/utility/services/loading/loading-state.service.ts ***!
+  \*******************************************************************/
+/*! exports provided: LoadingStateService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingConfigService", function() { return LoadingConfigService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingStateService", function() { return LoadingStateService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
@@ -616,25 +611,74 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let LoadingConfigService = class LoadingConfigService {
+let LoadingStateService = class LoadingStateService {
     constructor() {
-        this.config = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({
+        this.state = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({
             isLoading: false
         });
     }
     get isLoading() {
-        return this.config.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(c => c.isLoading));
+        return this.state.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(c => c.isLoading));
     }
     setLoading(loading) {
-        this.config.next({ isLoading: loading });
+        this.state.next({ isLoading: loading });
     }
 };
-LoadingConfigService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+LoadingStateService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
     }),
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
-], LoadingConfigService);
+], LoadingStateService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/utility/services/screen-dimension/screen-dimension.service.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/utility/services/screen-dimension/screen-dimension.service.ts ***!
+  \*******************************************************************************/
+/*! exports provided: ScreenDimensionService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ScreenDimensionService", function() { return ScreenDimensionService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
+
+let ScreenDimensionService = class ScreenDimensionService {
+    constructor() {
+        this.state = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({
+            minHeight: 100,
+            contentHeight: 100
+        });
+    }
+    get minHeight() {
+        return this.state.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(c => c.minHeight));
+    }
+    get contentHeight() {
+        return this.state.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(c => c.contentHeight));
+    }
+    setMinHeight(newMinHeight) {
+        this.state.next({ minHeight: newMinHeight, contentHeight: this.state.value.contentHeight });
+    }
+    setContentHeight(newContentHeight) {
+        this.state.next({ minHeight: this.state.value.minHeight, contentHeight: newContentHeight });
+    }
+};
+ScreenDimensionService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], ScreenDimensionService);
 
 
 
@@ -656,7 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_loading_loading_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/loading/loading.component */ "./src/app/utility/components/loading/loading.component.ts");
 /* harmony import */ var _pipes_fill_pipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pipes/fill.pipe */ "./src/app/utility/pipes/fill.pipe.ts");
 /* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/fire */ "./node_modules/@angular/fire/es2015/index.js");
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/auth/es2015/index.js");
 /* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/es2015/index.js");
 /* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/utility/components/navbar/navbar.component.ts");
@@ -699,7 +743,7 @@ UtilityModule = UtilityModule_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_12__["RouterModule"].forChild([]),
-            _angular_fire__WEBPACK_IMPORTED_MODULE_5__["AngularFireModule"].initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].firebase),
+            _angular_fire__WEBPACK_IMPORTED_MODULE_5__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].firebase),
             _angular_fire_auth__WEBPACK_IMPORTED_MODULE_7__["AngularFireAuthModule"],
             _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_8__["AngularFirestoreModule"].enablePersistence()
         ],
