@@ -11,6 +11,9 @@ export class MainLayoutComponent implements OnInit, AfterViewChecked {
   minHeight = 100;
   screenHeight = 100;
 
+  recalculateMinHeight = false;
+  recalculateScreenHeight = false;
+
   @ViewChild('navbar', { read: ElementRef, static: false }) navbar;
   @ViewChild('footer', { read: ElementRef, static: false }) footer;
 
@@ -36,6 +39,7 @@ export class MainLayoutComponent implements OnInit, AfterViewChecked {
       }, 0)
     }
   }
+
 
   vh2Px(vh) {
     const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TopicService } from '../../utility/services/topics/topic.service';
 import { DbTopic } from '../../utility/services/topics/db-topic';
 import { LoadingStateService } from '../../utility/services/loading/loading-state.service';
+import { ScriptLoadingService } from '../../utility/services/scripts-loader/script-loading.service';
 
 declare var TagCanvas: any
 
@@ -20,7 +21,8 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
   constructor(
     private router: Router,
     private topicService: TopicService,
-    private loadingService: LoadingStateService
+    private loadingService: LoadingStateService,
+    private scriptLoader: ScriptLoadingService,
   ) { }
 
   ngOnInit() {
@@ -33,9 +35,11 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     if (!this.populated && this.topics.length > 0) {
-      this.initializeWordCloud()
-      this.populated = true
-      this.loadingService.setLoading(false)
+      this.scriptLoader.load('wordcloud').then(data => {
+        this.initializeWordCloud()
+        this.populated = true
+        this.loadingService.setLoading(false)
+      })
     }
   }
 
@@ -47,7 +51,7 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
   explore(topic: DbTopic) {
     // this.router.navigate(['explore', topic.id])
     topic.data.members = []
-    this.router.navigateByUrl('explore/' + topic.id,  {state: topic})
+    this.router.navigateByUrl('explore/' + topic.id, { state: topic })
     return false;
   }
 
