@@ -4,7 +4,8 @@
       <canvas width="1000" height="789" id="myCanvas">
         <ul>
           <li *ngFor="let topic of topics; index as i">
-            <a (click)="explore(topic)" class="wordcloud_topic" style="font-size: 100pt;">
+            <a (click)="explore(topic)" class="wordcloud_topic" style="font-size: 100pt;"
+              [attr.data-weight]="getWeight(i)">
               {{ topic.data.topic }}
             </a>
           </li>

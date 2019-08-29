@@ -93,6 +93,12 @@ export class TopicService {
     }))
   }
 
+  createTopic(newTopic) {
+    return this.afs.collection('topics').add({
+      
+    })
+  }
+
   private static toDbTopic(id, topic): DbTopic {
     return {
       id: id,

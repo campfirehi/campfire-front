@@ -72,6 +72,7 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
+    console.log('destroying join')
     this.state$.unsubscribe()
     if (this.routeId$) {
       this.routeId$.unsubscribe()

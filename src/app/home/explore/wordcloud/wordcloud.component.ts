@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
-import { TopicService } from '../../utility/services/topics/topic.service';
-import { DbTopic } from '../../utility/services/topics/db-topic';
-import { LoadingStateService } from '../../utility/services/loading/loading-state.service';
-import { ScriptLoadingService } from '../../utility/services/scripts-loader/script-loading.service';
+import { TopicService } from '../../../utility/services/topics/topic.service';
+import { DbTopic } from '../../../utility/services/topics/db-topic';
+import { LoadingStateService } from '../../../utility/services/loading/loading-state.service';
+import { ScriptLoadingService } from '../../../utility/services/scripts-loader/script-loading.service';
 
 declare var TagCanvas: any
 
@@ -35,9 +35,9 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     if (!this.populated && this.topics.length > 0) {
+      this.populated = true
       this.scriptLoader.load('wordcloud').then(data => {
         this.initializeWordCloud()
-        this.populated = true
         this.loadingService.setLoading(false)
       })
     }
@@ -49,7 +49,6 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
   }
 
   explore(topic: DbTopic) {
-    // this.router.navigate(['explore', topic.id])
     topic.data.members = []
     this.router.navigateByUrl('explore/' + topic.id, { state: topic })
     return false;
@@ -63,6 +62,11 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
       textColour: null,
       outlineColour: '#000000',
       outlineMethod: 'colour',
+      weightFrom: 'data-weight',
+      dragControl: true,
+
+      clickToFront: 500,
+      initial: [.1, 0],
     }
     try {
       TagCanvas.Start('myCanvas', '', options);
@@ -71,6 +75,14 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
       console.log(e);
       // something went wrong, hide the canvas container
       document.getElementById('myCanvasContainer').style.display = 'none';
+    }
+  }
+
+  getWeight(index) {
+    if (index == 0) {
+      return 50;
+    } else {
+      return 100;
     }
   }
 }
