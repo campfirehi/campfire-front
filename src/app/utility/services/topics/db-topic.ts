@@ -14,5 +14,6 @@ export interface DbTopic {
         topic: string;
         iterations: Array<DbIteration>;
         members: Array<any>
+        discussions: Array<string>
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScreenDimensionService } from '../../utility/services/screen-dimension/screen-dimension.service';
 
 @Component({
   selector: 'app-explore',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExploreComponent implements OnInit {
 
-  constructor() { }
+  wordCloudHeight: number = null
+
+  constructor(
+    private screenDimService: ScreenDimensionService
+  ) { }
 
   ngOnInit() {
+    this.screenDimService.minHeight.subscribe(height => {
+      this.wordCloudHeight = Math.ceil(height * 0.75);
+    })
   }
 
 }

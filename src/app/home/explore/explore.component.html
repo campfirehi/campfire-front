@@ -1,4 +1,4 @@
 <div class="container">
-    <app-wordcloud></app-wordcloud>
+    <app-wordcloud  *ngIf="wordCloudHeight != null" [height]="wordCloudHeight"></app-wordcloud>
     <app-create-topic></app-create-topic>
 </div>

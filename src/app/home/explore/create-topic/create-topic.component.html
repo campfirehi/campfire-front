@@ -1,2 +1,7 @@
-<input type="text" class="form-control" [(ngModel)]="newTopic" />
-<button (click)="createTopic()"> Create Topic </button>
+<div class="input-group mb-3">
+    <input [(ngModel)]="newTopic" #ctrl="ngModel" type="text" class="form-control" placeholder="Submit your own topic" aria-label="Submit your own topic"
+        aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="createTopic()">Button</button>
+    </div>
+</div>

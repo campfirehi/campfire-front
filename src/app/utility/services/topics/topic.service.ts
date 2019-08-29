@@ -94,9 +94,20 @@ export class TopicService {
   }
 
   createTopic(newTopic) {
-    return this.afs.collection('topics').add({
-      
-    })
+    return from(this.afs.collection('topics').add({
+      topic: newTopic,
+      discussions: [],
+      members: [],
+      iterations: [
+        {
+          stages: [
+            {
+              board_url: ''
+            }
+          ]
+        }
+      ]
+    }))
   }
 
   private static toDbTopic(id, topic): DbTopic {
@@ -105,7 +116,8 @@ export class TopicService {
       data: {
         topic: topic.topic,
         iterations: topic.iterations,
-        members: topic.members
+        members: topic.members,
+        discussions: topic.discussions
       },
     }
   }

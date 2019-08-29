@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div id="myCanvasContainer">
     <div class="container">
-      <canvas width="1000" height="789" id="myCanvas">
+      <canvas *ngIf="minHeight != null" width="1000" height="{{minHeight}}" id="myCanvas">
         <ul>
           <li *ngFor="let topic of topics; index as i">
             <a (click)="explore(topic)" class="wordcloud_topic" style="font-size: 100pt;"
-              [attr.data-weight]="getWeight(i)">
+              [attr.data-weight]="getWeight(i)" [style.color]="getRandomColor(i)">
               {{ topic.data.topic }}
             </a>
           </li>

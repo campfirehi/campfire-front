@@ -1,9 +1,10 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TopicService } from '../../../utility/services/topics/topic.service';
 import { DbTopic } from '../../../utility/services/topics/db-topic';
 import { LoadingStateService } from '../../../utility/services/loading/loading-state.service';
 import { ScriptLoadingService } from '../../../utility/services/scripts-loader/script-loading.service';
+import { ScreenDimensionService } from '../../../utility/services/screen-dimension/screen-dimension.service';
 
 declare var TagCanvas: any
 
@@ -15,6 +16,9 @@ declare var TagCanvas: any
 export class WordcloudComponent implements OnInit, AfterViewChecked {
 
   topics: Array<DbTopic> = []
+  colorsSet = new Map()
+
+  @Input('height') minHeight: number = null
 
   private populated = false
 
@@ -30,6 +34,7 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
     this.topicService.getAllTopics().subscribe(topics => {
       this.topics = topics
     })
+
   }
 
 
@@ -43,9 +48,14 @@ export class WordcloudComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  getRandomColor() {
-    const color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
-    return color;
+  getRandomColor(index) {
+    if (!this.colorsSet.has(index)) {
+      const color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+      this.colorsSet.set(index, color)
+      return color
+    } else {
+       return this.colorsSet.get(index);
+    }
   }
 
   explore(topic: DbTopic) {
