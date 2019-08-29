@@ -1,2 +1,22 @@
-<h1 *ngIf="topic"> {{ topic.data.topic }}</h1>
-<button (click)="joinTopic()"> Join Topic </button>
+<div class="container" *ngIf="topic">
+    <div class="py-3"></div>
+    <div>
+        <div class="pull-left inline-block-text-box">
+            <h2> {{ topic.data.topic }}</h2>
+        </div>
+        <div class="pull-right inline-block-text-box">
+            <button type="button" class="btn btn-success btn-lg" (click)="joinTopic()"> Join Topic </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="py-3"></div>
+    <app-discussion-list [discussions]="topic.data.discussions"></app-discussion-list>
+
+    <div class="input-group mb-3">
+        <input [(ngModel)]="newQuestion" #ctrl="ngModel" type="text" class="form-control" placeholder="Send in a new question" aria-label="Send in a new question"
+            aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-success" type="button" (click)="addQuestion()">Send a Question!</button>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('../dashboard/dashboard.module').then(mod => mod.DashboardModule)
   },
 
+  { path: '404', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent }
 ]
 

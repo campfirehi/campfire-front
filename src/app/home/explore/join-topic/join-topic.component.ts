@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { TopicService } from '../../../utility/services/topics/topic.service';
-import { filter, map } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { DbTopic } from '../../../utility/services/topics/db-topic';
 import { LoadingStateService } from '../../../utility/services/loading/loading-state.service';
 import { AuthGuardService } from '../../../utility/services/auth/auth-guard';
@@ -19,6 +18,7 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
   private routeId$: Subscription;
 
   topic: DbTopic;
+  newQuestion: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,8 +38,13 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
               const topicId = params['topic'];
               this.topicService.getTopicById(topicId).subscribe(
                 topic => {
-                  this.topic = topic
                   this.loadingService.setLoading(false);
+                  if (topic) {
+                    this.topic = topic
+                    this.loadingService.setLoading(false);
+                  } else {
+                    this.router.navigate(['404'])
+                  }
                 }
               )
             }
@@ -59,7 +64,7 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
         this.loadingService.setLoading(false);
         this.router.navigate(['dashboard'])
       },
-      error => console.log(error))
+        error => console.log(error))
     }
     else {
       this.router.navigateByUrl('login', {
@@ -72,11 +77,17 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    console.log('destroying join')
     this.state$.unsubscribe()
     if (this.routeId$) {
       this.routeId$.unsubscribe()
     }
+  }
+
+  addQuestion() {
+    this.topicService.addQuestionToDisccusion(this.topic.id, this.newQuestion).subscribe(() => {
+      this.topic.data.discussions.push(this.newQuestion)
+      this.newQuestion = ''
+    })
   }
 }
 

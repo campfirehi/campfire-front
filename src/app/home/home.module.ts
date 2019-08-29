@@ -10,6 +10,7 @@ import { LandingComponent } from './landing/landing.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ExploreComponent } from './explore/explore.component';
 import { CreateTopicComponent } from './explore/create-topic/create-topic.component';
+import { DiscussionListComponent } from './explore/join-topic/discussion-list/discussion-list.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { CreateTopicComponent } from './explore/create-topic/create-topic.compon
     LogoutComponent,
     ExploreComponent,
     CreateTopicComponent,
+    DiscussionListComponent,
   ],
   imports: [
     CommonModule,

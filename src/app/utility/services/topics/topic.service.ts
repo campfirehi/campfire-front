@@ -89,7 +89,11 @@ export class TopicService {
 
   getTopicById(topicId): Observable<DbTopic> {
     return this.afs.collection('topics').doc(topicId).get().pipe(map(snapshot => {
-      return TopicService.toDbTopic(snapshot.id, snapshot.data())
+      if (snapshot.exists) {
+        return TopicService.toDbTopic(snapshot.id, snapshot.data())
+      } else {
+        return null
+      }
     }))
   }
 
@@ -107,6 +111,16 @@ export class TopicService {
           ]
         }
       ]
+    }))
+  }
+
+  addQuestionToDisccusion(topicID, question) {
+    console.log('adding ' + question)
+    return from(this.afs.collection('topics').doc(topicID).update({
+      discussions: firebase.firestore.FieldValue.arrayUnion({
+        question: question,
+        likes: 0
+      })
     }))
   }
 
