@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="topic" class="row" style="position: relative">
     <div class="redirectable col-sm" (click)="redirect()">
         <h4>{{ simpleTopic.topic }}</h4>
         <p> in stage: {{ simpleTopic.stage }} </p>
@@ -8,4 +8,5 @@
         <img alt="pic1">
         <img alt="pic2">
     </div>
+    <div class="top-right-corner" (click)="leaveTopic()"> cross </div>
 </div>

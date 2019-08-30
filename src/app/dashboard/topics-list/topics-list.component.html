@@ -4,7 +4,7 @@
     <p> working with {{ getTotalMembers()}} community members</p>
     
     <ng-template ngFor let-topic [ngForOf]="topics">
-        <app-topic [topic]="topic"></app-topic>
+        <app-topic [topic]="topic" (leftTopic)="onLeaveTopic($event)"></app-topic>
         <hr>
     </ng-template>
 </div>

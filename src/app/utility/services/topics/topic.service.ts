@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentReference, fromDocRef } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap, reduce, combineAll, toArray, concatMap, mergeAll } from 'rxjs/operators';
 import { DbTopic } from './db-topic';
-import { Observable, from, merge, empty } from 'rxjs';
+import { Observable, from, merge, empty, combineLatest } from 'rxjs';
 import { AuthGuardService } from '../auth/auth-guard';
 
 @Injectable({
@@ -62,16 +62,39 @@ export class TopicService {
     }))
   }
 
-  getTopicsByUser(): Observable<any> {
+  getTopicsByUser() {
     const userUid = this.authGuard.getUserUID()
     if (userUid) {
+      // return this.afs.collection('users').doc(userUid).get().pipe(map(snapshot => {
+      //   const topicRefs: Array<DocumentReference> = snapshot.data().topics
+      //   return topicRefs.map(ref => fromDocRef(ref))
+      // })).pipe(
+      //   mergeMap(obs => obs.map(newObs => {
+      //     console.log('in middle merge map')
+      //     return newObs.pipe(map(snashot =>
+      //       TopicService.toDbTopic(snashot.payload.id, snashot.payload.data()))
+      //     )
+      //   })))
+      //   .pipe(mergeMap(response => {
+      //     console.log('in last merge map')
+      //     return merge(response)
+      //   }))
+      //   .pipe()
+
       return this.afs.collection('users').doc(userUid).get().pipe(map(snapshot => {
         const topicRefs: Array<DocumentReference> = snapshot.data().topics
-        return topicRefs.map(ref => fromDocRef(ref))
-      })).pipe(
-        mergeMap(obs => obs.map(newObs => newObs.pipe(map(snashot =>
-          TopicService.toDbTopic(snashot.payload.id, snashot.payload.data()))))))
-        .pipe(mergeMap(response => merge(response)))
+        const refs = topicRefs.map(ref => fromDocRef(ref))
+        const topics = refs.map(ref => ref.pipe(
+          map(snashot => TopicService.toDbTopic(snashot.payload.id, snashot.payload.data())
+          )))
+
+        return topics
+      })).pipe(mergeMap(response => {
+        console.log('in last merge map')
+        return merge(response)
+      })).pipe(mergeAll(10))
+
+
     } else {
       return empty().pipe(map(_ => []))
     }
@@ -108,6 +131,22 @@ export class TopicService {
         }
       ]
     }))
+  }
+
+  leaveTopic(topicId) {
+    const userId = this.authGuard.getUserUID()
+    if (userId) {
+      const userDoc = this.afs.collection('users').doc(userId)
+      const topicDoc = this.afs.collection('topics').doc(topicId)
+
+      return from(topicDoc.update({
+        members: firebase.firestore.FieldValue.arrayRemove(userDoc.ref)
+      }).then(() => {
+        userDoc.update({
+          topics: firebase.firestore.FieldValue.arrayRemove(topicDoc.ref)
+        })
+      }))
+    }
   }
 
   private static toDbTopic(id, topic): DbTopic {
