@@ -9,9 +9,18 @@ export class DiscussionListComponent implements OnInit {
 
   @Input("discussions") discussions;
 
+  animation: string = ''
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  like(index) {
+    this.animation = 'is_animating'
+    console.log(this.discussions[index])
+  }
+
+  
 }
+

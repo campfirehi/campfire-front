@@ -117,10 +117,7 @@ export class TopicService {
   addQuestionToDisccusion(topicID, question) {
     console.log('adding ' + question)
     return from(this.afs.collection('topics').doc(topicID).update({
-      discussions: firebase.firestore.FieldValue.arrayUnion({
-        question: question,
-        likes: 0
-      })
+      discussions: firebase.firestore.FieldValue.arrayUnion(question)
     }))
   }
 
