@@ -100,6 +100,7 @@ export class AuthService {
     const userCollection = this.afs.collection('users')
     return userCollection.doc(uid).set({
       email: email,
+      displayName: email.split("&", 1),
       topics: []
     })
   }

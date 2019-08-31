@@ -13,6 +13,7 @@ import { StepComponent } from './dt-track/dt-steps/step/step.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UtilityModule } from '../utility/utility.module';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
     CommonModule,
     DashboardRoutingModule,
     UtilityModule.forRoot(),
-    AngularFireAuthGuardModule
+    AngularFireAuthGuardModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   exports: [

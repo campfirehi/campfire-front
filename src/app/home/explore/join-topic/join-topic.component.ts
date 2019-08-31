@@ -41,7 +41,6 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
                   this.loadingService.setLoading(false);
                   if (topic) {
                     this.topic = topic
-                    this.loadingService.setLoading(false);
                   } else {
                     this.router.navigate(['404'])
                   }
@@ -75,7 +74,7 @@ export class JoinTopicComponent implements OnInit, OnDestroy {
     }
   }
 
-
+ 
   ngOnDestroy() {
     this.state$.unsubscribe()
     if (this.routeId$) {
