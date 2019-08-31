@@ -37,10 +37,10 @@ export class ProfileComponent implements OnInit {
   updateProfile(formValue) {
     this.loadingService.setLoading(true)
     this.userProfileService.updateProfile(formValue)
-      // .then(res => {
-      //   //load success message
-      // }, err => {
-      //   //load fail message
-      // })
+    .then(() => {
+      this.loadingService.setLoading(false)
+    }, err => {
+      console.log(err);
+    })
   }
 }
