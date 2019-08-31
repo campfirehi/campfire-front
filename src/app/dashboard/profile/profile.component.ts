@@ -35,8 +35,12 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile(formValue) {
-    console.log(formValue);
-    //this.loadingService.setLoading(true)
-    //this.userProfileService.updateProfile(formValue)
+    this.loadingService.setLoading(true)
+    this.userProfileService.updateProfile(formValue)
+      // .then(res => {
+      //   //load success message
+      // }, err => {
+      //   //load fail message
+      // })
   }
 }

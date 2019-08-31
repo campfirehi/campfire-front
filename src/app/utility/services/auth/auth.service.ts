@@ -98,9 +98,12 @@ export class AuthService {
 
   saveUserToDb(email, uid) {
     const userCollection = this.afs.collection('users')
-    return userCollection.doc(uid).set({
+    return userCollection.doc(uid).set(
+      {
+      firstName: '',
+      lastName: '',
+      userName: email.split("&", 1),
       email: email,
-      displayName: email.split("&", 1),
       topics: []
     })
   }
