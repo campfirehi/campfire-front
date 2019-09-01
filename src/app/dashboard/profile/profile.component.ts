@@ -11,24 +11,27 @@ import { LoadingStateService } from '../../utility/services/loading/loading-stat
 export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
+  userProfile
 
   constructor(
     private userProfileService : UserProfileService,
     private loadingService: LoadingStateService,
     private fb: FormBuilder
-  ) {
-    this.createForm();
-   }
+  ){}
 
   ngOnInit() {
+    this.userProfileService.getUserProfile().subscribe(a => {
+      this.userProfile = a
+      this.createForm();
+    });
   }
   
   createForm() {
     this.profileForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      userName: ['', Validators.required],
+      firstName: [this.userProfile.firstName, Validators.required],
+      lastName: [this.userProfile.lastName, Validators.required],
+      email: [this.userProfile.email, Validators.required],
+      userName: [this.userProfile.userName, Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     })
